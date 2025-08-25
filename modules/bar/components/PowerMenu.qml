@@ -6,7 +6,7 @@ import QtQuick
 BarModule {
   id: root
 
-  property var visibilities
+  required property var settings
 
   Component.onCompleted: shutdown.forceActiveFocus()
 
@@ -60,7 +60,7 @@ BarModule {
     function execute() {
       Quickshell.execDetached(command.split(" "))
 
-      root.visibilities.barCenterWidget = ""
+      root.settings.barCenterWidget = ""
     }
 
     width: 100
@@ -72,7 +72,7 @@ BarModule {
 
     Keys.onEnterPressed: execute()
     Keys.onReturnPressed: execute()
-    Keys.onEscapePressed: root.visibilities.barCenterWidget = ""
+    Keys.onEscapePressed: root.settings.barCenterWidget = ""
     Keys.onPressed: event => {
       if (event.key === Qt.Key_J && KeyNavigation.down) {
         KeyNavigation.down.focus = true;

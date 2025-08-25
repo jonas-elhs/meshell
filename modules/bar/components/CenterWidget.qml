@@ -4,9 +4,9 @@ MultiWidget {
   id: root
 
   required property var bar
-  required property var visibilities
+  required property var settings
 
-  alwaysBorder: root.visibilities.barCenterWidget == "powerMenu"
+  alwaysBorder: root.settings.barCenterWidget == "powerMenu"
 
   WidgetComponent {
     id: workspaces
@@ -20,10 +20,10 @@ MultiWidget {
 
   WidgetComponent {
     id: powerMenu
-    condition: root.visibilities.barCenterWidget == "powerMenu"
+    condition: root.settings.barCenterWidget == "powerMenu"
 
     PowerMenu {
-      visibilities: root.visibilities
+      settings: root.settings
       styled: false
     }
   }

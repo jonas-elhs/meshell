@@ -8,6 +8,8 @@ import QtQuick
 PanelWindow {
   id: root
 
+  required property var settings
+
   // Span Whole Screen
   anchors {
     top: true
@@ -40,11 +42,11 @@ PanelWindow {
   // Keyboard Focus
   WlrLayershell.keyboardFocus: WlrKeyboardFocus.OnDemand
   HyprlandFocusGrab {
-    active: visibilities.barCenterWidget == "powerMenu"
+    active: root.settings.barCenterWidget == "powerMenu"
     id: grab
-    windows: [ shell ]
+    windows: [ root ]
     onCleared: {
-      visibilities.barCenterWidget = "";
+      root.settings.barCenterWidget = "";
     }
   }
 }

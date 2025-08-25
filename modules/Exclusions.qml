@@ -4,9 +4,10 @@ import Quickshell
 PanelWindow {
   id: root
 
-  required property var visibilities
+  required property var settings
+  required property var bar
 
-  visible: visibilities.bar
+  visible: settings.showBar
 
   anchors.left: true
   margins.left: Config.layout.gap.size

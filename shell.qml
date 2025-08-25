@@ -14,10 +14,11 @@ ShellRoot {
 
       ShellWindow {
         id: shell
+        settings: settings
 
         Bar {
           id: bar
-          visibilities: visibilities
+          settings: settings
         }
 
         // Notifications {
@@ -25,13 +26,14 @@ ShellRoot {
         // }
       }
 
-      Visibilities {
-        id: visibilities
+      Settings {
+        id: settings
         screen: scope.modelData
       }
 
       Exclusions {
-        visibilities: visibilities
+        settings: settings
+        bar: bar
       }
     }
   }

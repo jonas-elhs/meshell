@@ -5,12 +5,12 @@ import QtQuick
 Item {
   id: bar
 
-  property var visibilities
+  required property var settings
 
   property int barWidth
   Component.onCompleted: bar.barWidth = Math.max(information.implicitWidth, clock.implicitWidth, performance.implicitWidth)
 
-  opacity: visibilities.bar ? 1 : 0
+  opacity: settings.showBar ? 1 : 0
 
   Behavior on anchors.leftMargin { NumberAnimation { duration: 200; easing.type: Easing.InOutQuad } }
   Behavior on opacity { NumberAnimation { duration: 200; easing.type: Easing.InOutQuad } }
@@ -18,7 +18,7 @@ Item {
   anchors {
     topMargin: Config.layout.gap.size
     rightMargin: 0
-    leftMargin: visibilities.bar ? Config.layout.gap.size : -barWidth
+    leftMargin: settings.showBar ? Config.layout.gap.size : -barWidth
     bottomMargin: Config.layout.gap.size
 
     top: parent.top
@@ -41,7 +41,7 @@ Item {
   CenterWidget {
     id: centerWidget
     bar: bar
-    visibilities: bar.visibilities
+    settings: bar.settings
 
     anchors.verticalCenter: bar.verticalCenter
   }
@@ -56,7 +56,7 @@ Item {
   Power {
     id: power
     width: bar.barWidth
-    visibilities: bar.visibilities
+    settings: bar.settings
 
     anchors.bottom: parent.bottom
   }

@@ -6,7 +6,7 @@ PersistentProperties {
   id: root
 
   required property ShellScreen screen
-  property bool bar: true
+  property bool showBar: true
   property string barCenterWidget: ""
 
   function toggleBarCenterWidget(widget: string) {
@@ -17,9 +17,9 @@ PersistentProperties {
     }
   }
 
-  onBarChanged: {
+  onShowBarChanged: {
     root.barCenterWidget = ""
   }
 
-  Component.onCompleted: VisibilitiesStorage.save(screen, this)
+  Component.onCompleted: SettingsStorage.save(screen, this)
 }

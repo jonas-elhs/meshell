@@ -1,11 +1,11 @@
 import qs.components.bar
 
 BarModule {
-  property var visibilities
+  required property var settings
 
   BarItem {
     icon: "⏻"
 
-    onClicked: visibilities.powerMenu = !visibilities.powerMenu
+    onClicked: settings.toggleBarCenterWidget("powerMenu")
   }
 }

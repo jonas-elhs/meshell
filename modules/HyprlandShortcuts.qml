@@ -6,53 +6,53 @@ Scope {
   id: root
 
   // Bar
-  VisibilityShortcut {
+  SettingsShortcut {
     name: "bar"
     description: "Toggle the bar"
 
-    onActivated: (visibilities) => visibilities.bar = !visibilities.bar
+    onActivated: (settings) => settings.showBar = !settings.showBar
   }
-  VisibilityShortcut {
+  SettingsShortcut {
     name: "showBar"
     description: "Show the bar"
 
-    onActivated: (visibilities) => visibilities.bar = true
+    onActivated: (settings) => settings.showBar = true
   }
-  VisibilityShortcut {
+  SettingsShortcut {
     name: "hideBar"
     description: "Hide the bar"
 
-    onActivated: (visibilities) => visibilities.bar = false
+    onActivated: (settings) => settings.showBar = false
   }
 
   // Power Menu
-  VisibilityShortcut {
+  SettingsShortcut {
     name: "powerMenu"
     description: "Toggle the power menu"
 
-    onActivated: (visibilities) => visibilities.bar ? visibilities.toggleBarCenterWidget("powerMenu") : null
+    onActivated: (settings) => settings.showBar ? settings.toggleBarCenterWidget("powerMenu") : null
   }
-  VisibilityShortcut {
+  SettingsShortcut {
     name: "showPowerMenu"
     description: "Show the power menu"
 
-    onActivated: (visibilities) => visibilities.bar ? visibilities.barCenterWidget = "powerMenu" : null
+    onActivated: (settings) => settings.showBar ? settings.barCenterWidget = "powerMenu" : null
   }
-  VisibilityShortcut {
+  SettingsShortcut {
     name: "hidePowerMenu"
     description: "Hide the power menu"
 
-    onActivated: (visibilities) => visibilities.bar ? visibilities.barCenterWidget = "" : null
+    onActivated: (settings) => settings.showBar ? settings.barCenterWidget = "" : null
   }
 
   component Shortcut : GlobalShortcut {
     appid: "meshell"
   }
-  component VisibilityShortcut : Shortcut {
-    signal activated(visibilities: var)
+  component SettingsShortcut : Shortcut {
+    signal activated(settings: var)
     property bool released: false
 
-    onPressed: if (!released) activated(VisibilitiesStorage.getForActive())
-    onReleased: if (released) activated(VisibilitiesStorage.getForActive())
+    onPressed: if (!released) activated(SettingsStorage.getForActive())
+    onReleased: if (released) activated(SettingsStorage.getForActive())
   }
 }
