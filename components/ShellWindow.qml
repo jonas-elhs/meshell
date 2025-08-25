@@ -7,8 +7,6 @@ import QtQuick
 
 PanelWindow {
   id: root
-  default property list<QtObject> datax
-  Component.onCompleted: root.data = Qt.binding(() => root.datax)
 
   // Span Whole Screen
   anchors {
@@ -40,7 +38,7 @@ PanelWindow {
   color: "transparent"
 
   // Keyboard Focus
-  WlrLayershell.keyboardFocus: visibilities.powerMenu ? WlrKeyboardFocus.OnDemand : WlrKeyboardFocus.None
+  WlrLayershell.keyboardFocus: WlrKeyboardFocus.OnDemand
   HyprlandFocusGrab {
     active: visibilities.barCenterWidget == "powerMenu"
     id: grab
