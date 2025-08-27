@@ -8,6 +8,7 @@ PersistentProperties {
   required property ShellScreen screen
   property bool showBar: true
   property string barCenterWidget: ""
+  property string colorPickerColorType: ""
 
   function toggleBarCenterWidget(widget: string) {
     if (root.barCenterWidget == widget) {

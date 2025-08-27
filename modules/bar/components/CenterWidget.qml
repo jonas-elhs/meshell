@@ -27,4 +27,14 @@ MultiWidget {
       styled: false
     }
   }
+
+  WidgetComponent {
+    id: colorPicker
+    condition: root.settings.barCenterWidget == "colorPicker"
+
+    ColorPicker {
+      settings: root.settings
+      styled: false
+    }
+  }
 }
