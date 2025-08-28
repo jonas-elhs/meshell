@@ -1,4 +1,5 @@
 import qs.components.bar
+import Quickshell
 
 BarModule {
   required property var settings
@@ -6,6 +7,13 @@ BarModule {
   BarItem {
     icon: "⏻"
 
-    onClicked: settings.toggleBarCenterWidget("powerMenu")
+    acceptedButtons: Qt.LeftButton | Qt.RightButton
+    onClicked: (event) => {
+      if (event.button == Qt.LeftButton) {
+        settings.toggleBarCenterWidget("powerMenu")
+      } else {
+        Quickshell.execDetached([ "systemctl", "poweroff" ])
+      }
+    }
   }
 }

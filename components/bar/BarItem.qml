@@ -8,6 +8,7 @@ Item {
 
   property string text: ""
   property string icon: ""
+  property int acceptedButtons: Qt.AllButtons
   signal clicked(MouseEvent event)
 
   implicitWidth: content.implicitWidth
@@ -40,8 +41,11 @@ Item {
   }
 
   MouseArea {
+    id: mouseArea
+
     anchors.fill: parent
     anchors.margins: -5
+    acceptedButtons: root.acceptedButtons
     onClicked: (event) => root.clicked(event)
   }
 }
