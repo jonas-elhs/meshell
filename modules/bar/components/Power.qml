@@ -8,12 +8,7 @@ BarModule {
     icon: "⏻"
 
     acceptedButtons: Qt.LeftButton | Qt.RightButton
-    onClicked: (event) => {
-      if (event.button == Qt.LeftButton) {
-        settings.toggleBarCenterWidget("powerMenu")
-      } else {
-        Quickshell.execDetached([ "systemctl", "poweroff" ])
-      }
-    }
+    onLeftClicked: settings.toggleBarCenterWidget("powerMenu")
+    onRightClicked: Quickshell.execDetached([ "systemctl", "poweroff" ])
   }
 }

@@ -11,6 +11,9 @@ Item {
   // Not working properly (text not positioned correctly)
   property bool verticalText: false
   property int acceptedButtons: Qt.AllButtons
+  signal leftClicked(MouseEvent event)
+  signal middleClicked(MouseEvent event)
+  signal rightClicked(MouseEvent event)
   signal clicked(MouseEvent event)
 
   implicitWidth: content.implicitWidth
@@ -48,6 +51,14 @@ Item {
     anchors.fill: parent
     anchors.margins: -5
     acceptedButtons: root.acceptedButtons
-    onClicked: (event) => root.clicked(event)
+    onClicked: (event) => {
+      root.clicked(event)
+
+      switch (event.button) {
+        case Qt.LeftButton: root.leftClicked(event)
+        case Qt.MiddleButton: root.middleClicked(event)
+        case Qt.RightButton: root.rightClicked(event)
+      }
+    }
   }
 }
