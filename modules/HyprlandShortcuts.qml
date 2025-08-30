@@ -47,6 +47,16 @@ Scope {
   }
 
   // Color Picker
+  SettingsShortcut {
+    name: "pickColor"
+    description: "Pick a HEX color"
+
+    onActivated: (settings) => {
+      if (settings.showBar) {
+        ColorPicker.pickColor("hex", settings)
+      }
+    }
+  }
   ColorPickerShortcut {
     colorType: "rgb"
   }
@@ -58,9 +68,6 @@ Scope {
   }
   ColorPickerShortcut {
     colorType: "hsv"
-  }
-  ColorPickerShortcut {
-    colorType: "cmyk"
   }
   SettingsShortcut {
     name: "hideColorPicker"
@@ -87,26 +94,8 @@ Scope {
 
     onActivated: (settings) => {
       if (settings.showBar) {
-        ColorPicker.pickColor(colorType)
-
-        delayTimer.interval = 500
-        delayTimer.callback = () => {
-          settings.colorPickerColorType = colorType
-          settings.barCenterWidget = ""
-          settings.barCenterWidget = "colorPicker"
-        }
-        delayTimer.start()
+        ColorPicker.pickColor(colorType, settings)
       }
     }
-  }
-
-  Timer {
-    id: delayTimer
-
-    property var callback
-
-    interval: 0
-    repeat: false
-    onTriggered: callback()
   }
 }
