@@ -10,7 +10,9 @@ Item {
   property string icon: ""
   // Not working properly (text not positioned correctly)
   property bool verticalText: false
+  property int textSize: Config.layout.font.title
   property int acceptedButtons: Qt.AllButtons
+
   signal leftClicked(MouseEvent event)
   signal middleClicked(MouseEvent event)
   signal rightClicked(MouseEvent event)
@@ -21,7 +23,7 @@ Item {
   Layout.alignment: Qt.AlignHCenter
   anchors.horizontalCenter: (parent instanceof ColumnLayout) ? undefined : parent.horizontalCenter
 
-  Column {
+  BarGroup {
     id: content
 
     CustomText {
@@ -37,7 +39,7 @@ Item {
       id: text
 
       text: root.text
-      font.pixelSize: Config.layout.font.title
+      font.pixelSize: root.textSize
       rotation: root.verticalText ? 270 : 0
       width: root.verticalText ? implicitHeight : implicitWidth
       height: root.verticalText ? implicitWidth : implicitHeight
