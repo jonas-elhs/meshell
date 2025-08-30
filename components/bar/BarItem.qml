@@ -8,6 +8,8 @@ Item {
 
   property string text: ""
   property string icon: ""
+  // Not working properly (text not positioned correctly)
+  property bool verticalText: false
   property int acceptedButtons: Qt.AllButtons
   signal clicked(MouseEvent event)
 
@@ -25,17 +27,17 @@ Item {
       font.pixelSize: Config.layout.font.title
       color: Config.colors.accent
 
-      Layout.alignment: Qt.AlignHCenter
       anchors.horizontalCenter: parent.horizontalCenter
     }
     CustomText {
       id: text
 
       text: root.text
-      color: Config.colors.foreground.base
       font.pixelSize: Config.layout.font.title
+      rotation: root.verticalText ? 270 : 0
+      width: root.verticalText ? implicitHeight : implicitWidth
+      height: root.verticalText ? implicitWidth : implicitHeight
 
-      Layout.alignment: Qt.AlignHCenter
       anchors.horizontalCenter: parent.horizontalCenter
     }
   }
