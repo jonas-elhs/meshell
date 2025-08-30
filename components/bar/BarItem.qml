@@ -19,6 +19,7 @@ Item {
   implicitWidth: content.implicitWidth
   implicitHeight: content.implicitHeight
   Layout.alignment: Qt.AlignHCenter
+  anchors.horizontalCenter: (parent instanceof ColumnLayout) ? undefined : parent.horizontalCenter
 
   Column {
     id: content
