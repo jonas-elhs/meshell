@@ -53,13 +53,19 @@ Item {
     anchors.margins: -5
     acceptedButtons: root.acceptedButtons
     onClicked: (event) => {
-      root.clicked(event)
-
       switch (event.button) {
-        case Qt.LeftButton: root.leftClicked(event)
-        case Qt.MiddleButton: root.middleClicked(event)
-        case Qt.RightButton: root.rightClicked(event)
+        case Qt.LeftButton:
+          root.leftClicked(event)
+          break
+        case Qt.MiddleButton:
+          root.middleClicked(event)
+          break
+        case Qt.RightButton:
+          root.rightClicked(event)
+          break
       }
+
+      root.clicked(event)
     }
   }
 }

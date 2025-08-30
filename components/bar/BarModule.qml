@@ -10,7 +10,12 @@ Rectangle {
   property bool verticalPadding: padding
   property bool alwaysBorder: false
   property bool styled: true
+  property int acceptedButtons: Qt.AllButtons
   signal wheel(direction: string, event: WheelEvent)
+  signal leftClicked(MouseEvent event)
+  signal middleClicked(MouseEvent event)
+  signal rightClicked(MouseEvent event)
+  signal clicked(event: MouseEvent)
 
   radius: styled ? Config.layout.border.radius.size : 0
   color: styled ? `#${Config.layout.background.opacity_hex}${Config.colors.background.base.substring(1)}` : "transparent"
@@ -52,6 +57,30 @@ Rectangle {
       const direction = angleY == 120 ? "up" : angleY == -120 ? "down" : ""
 
       root.wheel(direction, event)
+    }
+  }
+
+  MouseArea {
+    anchors.fill: parent
+    propagateComposedEvents: true
+
+    acceptedButtons: root.acceptedButtons
+    onClicked: (event) => {
+      event.accepted = false
+
+      switch (event.button) {
+        case Qt.LeftButton:
+          root.leftClicked(event)
+          break
+        case Qt.MiddleButton:
+          root.middleClicked(event)
+          break
+        case Qt.RightButton:
+          root.rightClicked(event)
+          break
+      }
+
+      root.clicked(event)
     }
   }
 }
