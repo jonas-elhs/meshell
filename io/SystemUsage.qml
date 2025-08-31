@@ -44,10 +44,17 @@ Singleton {
 
     path: "/proc/stat"
     onLoaded: {
-      const text = cpu.text()
-      const line = text.slice(0, text.indexOf("\n"))
+      const data = this.text().match(/^cpu  (\d+) (\d+) (\d+) (\d+) (\d+) (\d+) (\d+)/)
 
-      //cpuPercentageDisplay = line
+      if (data) {
+        const stats = data.slice(1).map((number) => parseInt(number))
+
+        const total = stats.reduce((accumulator, stat) => accumulator + stat)
+        const idle = stats[3] + (stats[4] ?? 0)
+        const used = total - idle
+
+        root.cpuPercentage = used / total
+      }
     }
   }
 
@@ -59,13 +66,12 @@ Singleton {
       onStreamFinished: root.gpuType = text.trim()
     }
   }
-
   Process {
     id: gpu
 
-    command: root.gpuType === "generic" ? ["sh", "-c", "cat /sys/class/drm/card*/device/gpu_busy_percent"]
-              : root.gpuType === "nvidia" ? ["nvidia-smi", "--query-gpu=utilization.gpu", "--format=csv,noheader,nounits"]
-              : ["echo"]
+    command: root.gpuType === "generic" ? [ "sh", "-c", "cat /sys/class/drm/card*/device/gpu_busy_percent" ]
+              : root.gpuType === "nvidia" ? [ "nvidia-smi", "--query-gpu=utilization.gpu", "--format=csv,noheader,nounits" ]
+              : [ "echo" ]
     stdout: StdioCollector {
       onStreamFinished: {
         if (root.gpuType == "generic") {
