@@ -1,4 +1,5 @@
 import qs.components.bar
+import qs.components.animations
 import Quickshell
 import QtQuick
 import QtQuick.Layouts
@@ -24,21 +25,18 @@ BarModule {
     ParallelAnimation {
       id: animation
 
-      NumberAnimation {
+      CustomNumberAnimation {
         target: loader.item
         property: "scale"
         from: 0
         to: 1
-        duration: 200
-        easing.type: Easing.InOutQuad
       }
-      NumberAnimation {
+      CustomNumberAnimation {
         target: loader.item
         property: "opacity"
         from: 0
         to: 1
         duration: 400
-        easing.type: Easing.InOutQuad
       }
     }
 
@@ -46,15 +44,9 @@ BarModule {
   }
 
   Behavior on implicitWidth {
-    NumberAnimation {
-      duration: 200
-      easing.type: Easing.InOutQuad
-    }
+    CustomNumberAnimation {}
   }
   Behavior on implicitHeight {
-    NumberAnimation {
-      duration: 200
-      easing.type: Easing.InOutQuad
-    }
+    CustomNumberAnimation {}
   }
 }

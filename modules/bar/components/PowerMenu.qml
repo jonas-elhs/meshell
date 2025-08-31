@@ -1,5 +1,6 @@
 import qs.config
 import qs.components.bar
+import qs.components.animations
 import Quickshell
 import QtQuick
 
@@ -100,10 +101,7 @@ BarModule {
     }
 
     Behavior on border.color {
-      ColorAnimation {
-        duration: 200
-        easing.type: Easing.InOutQuad
-      }
+      CustomColorAnimation {}
     }
   }
 }

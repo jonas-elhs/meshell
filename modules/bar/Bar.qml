@@ -1,4 +1,5 @@
 import qs.config
+import qs.components.animations
 import qs.modules.bar.components
 import QtQuick
 
@@ -13,16 +14,10 @@ Item {
   opacity: settings.showBar ? 1 : 0
 
   Behavior on anchors.leftMargin {
-    NumberAnimation {
-      duration: 200
-      easing.type: Easing.InOutQuad
-    }
+    CustomNumberAnimation {}
   }
   Behavior on opacity {
-    NumberAnimation {
-      duration: 200
-      easing.type: Easing.InOutQuad
-    }
+    CustomNumberAnimation {}
   }
 
   anchors {

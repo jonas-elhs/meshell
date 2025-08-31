@@ -1,4 +1,5 @@
 import qs.config
+import qs.components.animations
 import QtQuick
 import QtQuick.Layouts
 
@@ -43,10 +44,7 @@ Rectangle {
     id: hoverState
   }
   Behavior on border.color {
-    ColorAnimation {
-      duration: 200
-      easing.type: Easing.InOutQuad
-    }
+    CustomColorAnimation {}
   }
 
   WheelHandler {

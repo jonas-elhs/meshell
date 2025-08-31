@@ -1,5 +1,6 @@
 import qs.config
 import qs.components.bar
+import qs.components.animations
 import QtQuick
 import QtQuick.Layouts
 import Quickshell.Hyprland
@@ -52,16 +53,10 @@ BarModule {
 
       // Animations
       Behavior on Layout.preferredHeight {
-        NumberAnimation {
-          duration: 200
-          easing.type: Easing.InOutQuad
-        }
+        CustomNumberAnimation {}
       }
       Behavior on color {
-        ColorAnimation {
-          duration: 200
-          easing.type: Easing.InOutQuad
-        }
+        CustomColorAnimation {}
       }
     }
   }
