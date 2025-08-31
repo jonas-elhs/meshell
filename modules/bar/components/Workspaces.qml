@@ -53,7 +53,7 @@ BarModule {
       // Animations
       Behavior on Layout.preferredHeight {
         NumberAnimation {
-          duration: 200;
+          duration: 200
           easing.type: Easing.InOutQuad
         }
       }

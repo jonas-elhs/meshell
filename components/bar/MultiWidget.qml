@@ -47,13 +47,13 @@ BarModule {
 
   Behavior on implicitWidth {
     NumberAnimation {
-      duration: 200;
+      duration: 200
       easing.type: Easing.InOutQuad
     }
   }
   Behavior on implicitHeight {
     NumberAnimation {
-      duration: 200;
+      duration: 200
       easing.type: Easing.InOutQuad
     }
   }

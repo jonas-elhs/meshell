@@ -75,11 +75,11 @@ BarModule {
     Keys.onEscapePressed: root.settings.barCenterWidget = ""
     Keys.onPressed: event => {
       if (event.key === Qt.Key_J && KeyNavigation.down) {
-        KeyNavigation.down.focus = true;
-        event.accepted = true;
+        KeyNavigation.down.focus = true
+        event.accepted = true
       } else if (event.key === Qt.Key_K && KeyNavigation.up) {
-        KeyNavigation.up.focus = true;
-        event.accepted = true;
+        KeyNavigation.up.focus = true
+        event.accepted = true
       }
     }
 

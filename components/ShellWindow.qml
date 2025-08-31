@@ -46,7 +46,7 @@ PanelWindow {
     id: grab
     windows: [ root ]
     onCleared: {
-      root.settings.barCenterWidget = "";
+      root.settings.barCenterWidget = ""
     }
   }
 }

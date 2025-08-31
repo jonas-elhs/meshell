@@ -12,8 +12,18 @@ Item {
 
   opacity: settings.showBar ? 1 : 0
 
-  Behavior on anchors.leftMargin { NumberAnimation { duration: 200; easing.type: Easing.InOutQuad } }
-  Behavior on opacity { NumberAnimation { duration: 200; easing.type: Easing.InOutQuad } }
+  Behavior on anchors.leftMargin {
+    NumberAnimation {
+      duration: 200
+      easing.type: Easing.InOutQuad
+    }
+  }
+  Behavior on opacity {
+    NumberAnimation {
+      duration: 200
+      easing.type: Easing.InOutQuad
+    }
+  }
 
   anchors {
     topMargin: Config.layout.gap.size
