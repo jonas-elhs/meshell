@@ -15,21 +15,6 @@ Singleton {
     root.colorType = colorType
     picker.running = true
   }
-  function getColorParts(): list<string> {
-    const split = root.color.split(" ")
-
-    switch (settings?.colorPickerColorType ?? "") {
-      case "hex":
-       const value = color.slice(1)
-       return [ value.slice(0, 2), value.slice(2, 4), value.slice(4, 6) ]
-      case "rgb":
-      case "hsl":
-      case "hsv":
-        return split
-      default:
-       return color
-    }
-  }
 
   Process {
     id: picker
