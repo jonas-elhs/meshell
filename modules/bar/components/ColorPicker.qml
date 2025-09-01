@@ -27,7 +27,6 @@ BarModule {
     }
   }
 
-
   acceptedButtons: Qt.LeftButton | Qt.RightButton
   onLeftClicked: Quickshell.execDetached([ "wl-copy", root.color ])
   onClicked: root.settings.barCenterWidget = ""
@@ -69,5 +68,11 @@ BarModule {
     radius: Config.layout.border.radius.inner
 
     Layout.alignment: Qt.AlignHCenter
+  }
+
+  Timer {
+    running: true
+    interval: 10000
+    onTriggered: settings.barCenterWidget = ""
   }
 }
