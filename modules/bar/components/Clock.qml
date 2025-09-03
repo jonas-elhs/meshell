@@ -3,7 +3,7 @@ import qs.components.bar
 
 BarModule {
   BarItem {
-    icon: ""
+    icon: "schedule"
     text: Time.format("hh\nmm")
   }
 }

@@ -40,7 +40,7 @@ PanelWindow {
   color: "transparent"
 
   // Keyboard Focus
-  WlrLayershell.keyboardFocus: WlrKeyboardFocus.OnDemand
+  WlrLayershell.keyboardFocus: root.settings.barCenterWidget == "" ? WlrKeyboardFocus.None : WlrKeyboardFocus.OnDemand
   HyprlandFocusGrab {
     active: root.settings.barCenterWidget == "powerMenu"
     id: grab

@@ -5,24 +5,24 @@ BarModule {
   horizontalPadding: false
 
   BarItem {
-    icon: ""
+    icon: "memory"
     text: SystemUsage.cpuPercentageDisplay + "%"
   }
 
   BarItem {
     visible: SystemUsage.gpuType != "NONE"
 
-    icon: "󰢮"
+    icon: ""
     text: SystemUsage.gpuPercentageDisplay + "%"
   }
 
   BarItem {
-    icon: ""
+    icon: "memory_alt"
     text: SystemUsage.memoryPercentageDisplay + "%"
   }
 
   BarItem {
-    icon: ""
+    icon: "hard_drive"
     text: SystemUsage.storagePercentageDisplay + "%"
   }
 }

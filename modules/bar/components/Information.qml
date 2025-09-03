@@ -2,14 +2,14 @@ import qs.components.bar
 
 BarModule {
   BarItem {
-    icon: ""
+    icon: "lan"
   }
 
   BarItem {
-    icon: "󰂯"
+    icon: "bluetooth"
   }
 
   BarItem {
-    icon: ""
+    icon: "volume_up"
   }
 }

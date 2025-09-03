@@ -1,4 +1,5 @@
 import qs.config
+import qs.components
 import qs.components.bar
 import qs.components.animations
 import Quickshell
@@ -13,7 +14,7 @@ BarModule {
 
   PowerButton {
     id: suspend
-    icon: ""
+    icon: "stop_circle"
     command: "systemctl suspend"
 
     KeyNavigation.up: lock
@@ -21,7 +22,7 @@ BarModule {
   }
   PowerButton {
     id: hibernate
-    icon: ""
+    icon: "save"
     command: "systemctl hibernate"
 
     KeyNavigation.up: suspend
@@ -29,7 +30,7 @@ BarModule {
   }
   PowerButton {
     id: shutdown
-    icon: "⏻"
+    icon: "power_settings_new"
     command: "systemctl poweroff"
 
     KeyNavigation.up: hibernate
@@ -37,7 +38,7 @@ BarModule {
   }
   PowerButton {
     id: reboot
-    icon: ""
+    icon: "cached"
     command: "systemctl reboot"
 
     KeyNavigation.up: shutdown
@@ -45,7 +46,7 @@ BarModule {
   }
   PowerButton {
     id: lock
-    icon: ""
+    icon: "lock"
     command: "loginctl lock-session"
 
     KeyNavigation.up: reboot
@@ -84,11 +85,17 @@ BarModule {
       }
     }
 
-    Text {
-      text: icon
-      anchors.centerIn: parent
+    MaterialIcon {
+      icon: button.icon
       color: Config.colors.foreground.base
-      font.pixelSize: 100
+      // color: button.focus ? Config.colors.accent : Config.colors.foreground.base
+      size: 50
+      weight: 700
+      anchors.centerIn: parent
+
+      Behavior on color {
+        CustomColorAnimation {}
+      }
     }
 
     MouseArea {

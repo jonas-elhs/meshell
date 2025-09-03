@@ -5,7 +5,8 @@ BarModule {
   required property var settings
 
   BarItem {
-    icon: "⏻"
+    icon: "power_settings_new"
+    boldIcon: true
 
     acceptedButtons: Qt.LeftButton | Qt.RightButton
     onLeftClicked: settings.toggleBarCenterWidget("powerMenu")

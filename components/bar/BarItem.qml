@@ -10,6 +10,7 @@ Item {
   property string icon: ""
   // Not working properly (text not positioned correctly)
   property bool verticalText: false
+  property bool boldIcon: false
   property int textSize: Config.layout.font.title
   property int acceptedButtons: Qt.AllButtons
 
@@ -26,11 +27,12 @@ Item {
   BarGroup {
     id: content
 
-    CustomText {
+    MaterialIcon {
       id: icon
 
-      text: root.icon
-      font.pixelSize: Config.layout.font.title
+      icon: root.icon
+      size: 15
+      weight: root.boldIcon ? 600 : 500
       color: Config.colors.accent
 
       anchors.horizontalCenter: parent.horizontalCenter
