@@ -9,6 +9,7 @@ Singleton {
   property var settings
   property string color
   property string colorType
+  property bool copy: false
   property string previewColor: {
     const parts = root.color.split(" ")
 
@@ -60,20 +61,24 @@ Singleton {
     }
   }
 
-  function pickColor(colorType: string, settings: var) {
+  function pickColor(colorType: string, settings: var, copy: bool) {
     root.settings = settings
     root.colorType = colorType
+    root.copy = copy ?? false
     picker.running = true
   }
 
   Process {
     id: picker
 
-    command: [ "hyprpicker", "--no-fancy", "--format", root.colorType ]
+    command: [ "hyprpicker", "--no-fancy", root.copy ? "--autocopy" : "", "--format", root.colorType ]
     stdout: StdioCollector {
       onStreamFinished: {
         root.color = this.text.trim().split("\n").filter((line) => !line.startsWith("["))[0]?.trim() ?? null
 
+        if (root.copy) {
+          console.log("copy")
+        }
         if (root.color) {
           settings.colorPickerColorType = root.colorType
           settings.barCenterWidget = ""

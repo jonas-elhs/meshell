@@ -47,16 +47,6 @@ Scope {
   }
 
   // Color Picker
-  SettingsShortcut {
-    name: "pickColor"
-    description: "Pick a HEX color"
-
-    onActivated: (settings) => {
-      if (settings.showBar) {
-        ColorPicker.pickColor("hex", settings)
-      }
-    }
-  }
   ColorPickerShortcut {
     colorType: "rgb"
   }
@@ -86,15 +76,27 @@ Scope {
     onPressed: if (!released) activated(SettingsStorage.getForActive())
     onReleased: if (released) activated(SettingsStorage.getForActive())
   }
-  component ColorPickerShortcut : SettingsShortcut {
+  component ColorPickerShortcut : Item {
     property string colorType: ""
 
-    name: `pick${colorType.charAt(0).toUpperCase() + colorType.slice(1)}Color`
-    description: `Pick a ${colorType.toUpperCase()} color`
+    SettingsShortcut {
+      name: `pick${colorType.charAt(0).toUpperCase() + colorType.slice(1)}Color`
+      description: `Pick a ${colorType.toUpperCase()} color`
 
-    onActivated: (settings) => {
-      if (settings.showBar) {
-        ColorPicker.pickColor(colorType, settings)
+      onActivated: (settings) => {
+        if (settings.showBar) {
+          ColorPicker.pickColor(colorType, settings)
+        }
+      }
+    }
+    SettingsShortcut {
+      name: `pick${colorType.charAt(0).toUpperCase() + colorType.slice(1)}ColorCopy`
+      description: `Pick a ${colorType.toUpperCase()} color`
+
+      onActivated: (settings) => {
+        if (settings.showBar) {
+          ColorPicker.pickColor(colorType, settings, true)
+        }
       }
     }
   }
