@@ -47,7 +47,7 @@ BarModule {
   PowerButton {
     id: lock
     icon: "lock"
-    command: "loginctl lock-session"
+    command: "sleep 0.2 && loginctl lock-session"
 
     KeyNavigation.up: reboot
     KeyNavigation.down: suspend
@@ -60,7 +60,7 @@ BarModule {
     property string command
 
     function execute() {
-      Quickshell.execDetached(command.split(" "))
+      Quickshell.execDetached([ "sh", "-c", command ])
 
       root.settings.barCenterWidget = ""
     }
