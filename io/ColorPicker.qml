@@ -76,9 +76,6 @@ Singleton {
       onStreamFinished: {
         root.color = this.text.trim().split("\n").filter((line) => !line.startsWith("["))[0]?.trim() ?? null
 
-        if (root.copy) {
-          console.log("copy")
-        }
         if (root.color) {
           settings.colorPickerColorType = root.colorType
           settings.barCenterWidget = ""
