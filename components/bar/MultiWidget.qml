@@ -2,7 +2,6 @@ import qs.components.bar
 import qs.components.animations
 import Quickshell
 import QtQuick
-import QtQuick.Layouts
 
 BarModule {
   id: root
@@ -14,13 +13,14 @@ BarModule {
 
   implicitWidth: loader.implicitWidth
   implicitHeight: loader.implicitHeight
+  column: false
 
   Loader {
     id: loader
 
-    Layout.fillWidth: true
-    Layout.fillHeight: true
+    anchors.fill: parent
     sourceComponent: activeComponent
+    onSourceComponentChanged: animation.running = true
 
     ParallelAnimation {
       id: animation
@@ -39,8 +39,6 @@ BarModule {
         duration: 400
       }
     }
-
-    onSourceComponentChanged: animation.running = true
   }
 
   Behavior on implicitWidth {

@@ -3,7 +3,6 @@ import qs.config
 import qs.components.bar
 import Quickshell
 import QtQuick
-import QtQuick.Layouts
 
 BarModule {
   id: root
@@ -50,7 +49,7 @@ BarModule {
     color: ColorPicker.previewColor
     radius: Config.layout.border.radius.inner
 
-    Layout.alignment: Qt.AlignHCenter
+    anchors.horizontalCenter: parent.horizontalCenter
   }
 
   Timer {

@@ -9,7 +9,7 @@ Item {
   required property var settings
 
   property int barWidth
-  Component.onCompleted: bar.barWidth = Math.max(information.implicitWidth, clock.implicitWidth, performance.implicitWidth)
+  Component.onCompleted: bar.barWidth = Math.max(information.implicitWidth, clock.implicitWidth, performance.implicitWidth, performance.implicitWidth)
 
   opacity: settings.showBar ? 1 : 0
 
@@ -50,6 +50,12 @@ Item {
 
     anchors.verticalCenter: bar.verticalCenter
   }
+  // Workspaces {
+  //   id: centerWidget
+  //
+  //   width: bar.barWidth
+  //   anchors.verticalCenter: bar.verticalCenter
+  // }
 
   SystemUsage {
     id: performance

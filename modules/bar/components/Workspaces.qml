@@ -2,7 +2,6 @@ import qs.config
 import qs.components.bar
 import qs.components.animations
 import QtQuick
-import QtQuick.Layouts
 import Quickshell.Hyprland
 
 BarModule {
@@ -20,6 +19,7 @@ BarModule {
     }
   }
 
+  // TODO: Add top and bottom extra margin of 4 px
   Repeater {
     id: workspaceRepeater
     model: workspaces
@@ -29,12 +29,10 @@ BarModule {
       readonly property bool focused: Hyprland.focusedWorkspace.id == workspace.id
       readonly property int diameter: 10
 
-      Layout.topMargin: workspace == workspaces[0] ? 4 : 0
-      Layout.bottomMargin: workspace == workspaces[workspaces.length - 1] ? 4 : 0
-      Layout.alignment: Qt.AlignHCenter
+      anchors.horizontalCenter: parent.horizontalCenter
 
-      Layout.preferredWidth: diameter
-      Layout.preferredHeight: focused ? 100 : diameter
+      implicitWidth: diameter
+      implicitHeight: focused ? 100 : diameter
       radius: width / 2
       color: focused ? Config.colors.accent : Config.colors.foreground.base
 
@@ -52,7 +50,7 @@ BarModule {
       }
 
       // Animations
-      Behavior on Layout.preferredHeight {
+      Behavior on implicitHeight {
         CustomNumberAnimation {}
       }
       Behavior on color {

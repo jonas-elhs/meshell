@@ -1,7 +1,6 @@
 import qs.config
 import qs.components.animations
 import QtQuick
-import QtQuick.Layouts
 
 Rectangle {
   id: root
@@ -12,31 +11,57 @@ Rectangle {
   property bool alwaysBorder: false
   property bool styled: true
   property int acceptedButtons: Qt.AllButtons
+  property int spacing: Config.layout.gap.inner
+  property bool column: true
   signal wheel(direction: string, event: WheelEvent)
   signal leftClicked(MouseEvent event)
   signal middleClicked(MouseEvent event)
   signal rightClicked(MouseEvent event)
   signal clicked(event: MouseEvent)
 
+  readonly property int childrenWidth: root.column ? columnWrapper.item.implicitWidth : itemWrapper.item.implicitWidth
+  readonly property int childrenHeight: root.column ? columnWrapper.item.implicitHeight : itemWrapper.item.implicitHeight
+
   radius: styled ? Config.layout.border.radius.size : 0
   color: styled ? `#${Config.layout.background.opacity_hex}${Config.colors.background.base.substring(1)}` : "transparent"
   border.width: styled ? Config.layout.border.width : 0
   border.color: hoverState.hovered || alwaysBorder ? Config.colors.accent : Config.colors.inactive
 
-  implicitWidth: wrapper.implicitWidth + (horizontalPadding ? 2 * Config.layout.gap.inner : 0)
-  implicitHeight: wrapper.implicitHeight + (verticalPadding ? 2 * Config.layout.gap.inner : 0)
+  implicitWidth: childrenWidth + (horizontalPadding ? 2 * Config.layout.gap.inner : 0)
+  implicitHeight: childrenHeight + (verticalPadding ? 2 * Config.layout.gap.inner : 0)
 
   // Display Children In Column
-  default property alias data: wrapper.data
-  ColumnLayout {
-    id: wrapper
+  default property list<QtObject> datax
+  Loader {
+    id: itemWrapper
 
+    active: root.column == false
     anchors.fill: parent
-    anchors.topMargin: verticalPadding && styled ? Config.layout.gap.inner : 0
-    anchors.rightMargin: horizontalPadding && styled ? Config.layout.gap.inner : 0
-    anchors.bottomMargin: verticalPadding && styled ? Config.layout.gap.inner : 0
-    anchors.leftMargin: horizontalPadding && styled ? Config.layout.gap.inner : 0
-    spacing: Config.layout.gap.inner
+    sourceComponent: Item {
+      data: root.datax
+
+      anchors.fill: parent
+      anchors.topMargin: verticalPadding && styled ? Config.layout.gap.inner : 0
+      anchors.rightMargin: horizontalPadding && styled ? Config.layout.gap.inner : 0
+      anchors.bottomMargin: verticalPadding && styled ? Config.layout.gap.inner : 0
+      anchors.leftMargin: horizontalPadding && styled ? Config.layout.gap.inner : 0
+    }
+  }
+  Loader {
+    id: columnWrapper
+
+    active: root.column == true
+    anchors.fill: parent
+    sourceComponent: Column {
+      data: root.datax
+
+      anchors.fill: parent
+      anchors.topMargin: verticalPadding && styled ? Config.layout.gap.inner : 0
+      anchors.rightMargin: horizontalPadding && styled ? Config.layout.gap.inner : 0
+      anchors.bottomMargin: verticalPadding && styled ? Config.layout.gap.inner : 0
+      anchors.leftMargin: horizontalPadding && styled ? Config.layout.gap.inner : 0
+      spacing: root.spacing
+    }
   }
 
   // Border Change On Hover

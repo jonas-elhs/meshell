@@ -1,7 +1,6 @@
 import qs.config
 import qs.components
 import QtQuick
-import QtQuick.Layouts
 
 Item {
   id: root
@@ -21,8 +20,7 @@ Item {
 
   implicitWidth: content.implicitWidth
   implicitHeight: content.implicitHeight
-  Layout.alignment: Qt.AlignHCenter
-  anchors.horizontalCenter: (parent instanceof ColumnLayout) ? undefined : parent.horizontalCenter
+  anchors.horizontalCenter: parent.horizontalCenter
 
   BarGroup {
     id: content
