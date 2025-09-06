@@ -6,19 +6,26 @@ import QtQuick
 BarModule {
   id: root
 
-  default property list<WidgetComponent> components
+  default property list<WidgetComponent> components: []
   readonly property Component conditionalComponent: components.find((component) => component.condition)?.component ?? null
   readonly property Component defaultComponent: components.find((component) => component.isDefault)?.component ?? null
   readonly property Component activeComponent: conditionalComponent ?? defaultComponent ?? null
 
-  implicitWidth: loader.implicitWidth
-  implicitHeight: loader.implicitHeight
-  column: false
+  padding: loader.item.padding
+  horizontalPadding: loader.item.horizontalPadding
+  verticalPadding: loader.item.verticalPadding
+  alwaysBorder: loader.item.alwaysBorder
+  acceptedButtons: loader.item.acceptedButtons
+  spacing: loader.item.spacing
+  onWheel: loader.item.onWheel
+  onLeftClicked: loader.item.onLeftClicked
+  onMiddleClicked: loader.item.onMiddleClicked
+  onRightClicked: loader.item.onRightClicked
+  onClicked: loader.item.onClicked
 
   Loader {
     id: loader
 
-    anchors.fill: parent
     sourceComponent: activeComponent
     onSourceComponentChanged: animation.running = true
 

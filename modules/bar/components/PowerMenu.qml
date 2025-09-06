@@ -11,6 +11,7 @@ BarModule {
   required property var settings
 
   Component.onCompleted: shutdown.forceActiveFocus()
+  alwaysBorder: true
 
   PowerButton {
     id: suspend

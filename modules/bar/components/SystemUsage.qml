@@ -2,7 +2,7 @@ import qs.components.bar
 import qs.io
 
 BarModule {
-  horizontalPadding: false
+  horizontalPadding: 0
 
   BarItem {
     icon: "memory"

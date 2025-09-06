@@ -50,12 +50,6 @@ Item {
 
     anchors.verticalCenter: bar.verticalCenter
   }
-  // Workspaces {
-  //   id: centerWidget
-  //
-  //   width: bar.barWidth
-  //   anchors.verticalCenter: bar.verticalCenter
-  // }
 
   SystemUsage {
     id: performance

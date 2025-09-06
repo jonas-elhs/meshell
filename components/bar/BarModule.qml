@@ -5,30 +5,33 @@ import QtQuick
 Rectangle {
   id: root
 
-  property bool padding: true
-  property bool horizontalPadding: padding
-  property bool verticalPadding: padding
+  property int padding: Config.layout.gap.inner
+  property int horizontalPadding: padding
+  property int verticalPadding: padding
   property bool alwaysBorder: false
   property bool styled: true
+
   property int acceptedButtons: Qt.AllButtons
   property int spacing: Config.layout.gap.inner
   property bool column: true
+
   signal wheel(direction: string, event: WheelEvent)
   signal leftClicked(MouseEvent event)
   signal middleClicked(MouseEvent event)
   signal rightClicked(MouseEvent event)
   signal clicked(event: MouseEvent)
 
-  readonly property int childrenWidth: root.column ? columnWrapper.item.implicitWidth : itemWrapper.item.implicitWidth
-  readonly property int childrenHeight: root.column ? columnWrapper.item.implicitHeight : itemWrapper.item.implicitHeight
+  readonly property Item wrapper: root.column == true ? columnWrapper.item : itemWrapper.item
+  readonly property int actualHorizontalPadding: styled ? horizontalPadding: 0
+  readonly property int actualVerticalPadding: styled ? verticalPadding: 0
 
   radius: styled ? Config.layout.border.radius.size : 0
   color: styled ? `#${Config.layout.background.opacity_hex}${Config.colors.background.base.substring(1)}` : "transparent"
   border.width: styled ? Config.layout.border.width : 0
   border.color: hoverState.hovered || alwaysBorder ? Config.colors.accent : Config.colors.inactive
 
-  implicitWidth: childrenWidth + (horizontalPadding ? 2 * Config.layout.gap.inner : 0)
-  implicitHeight: childrenHeight + (verticalPadding ? 2 * Config.layout.gap.inner : 0)
+  implicitWidth: wrapper.implicitWidth + 2 * actualHorizontalPadding
+  implicitHeight: wrapper.implicitHeight + 2 * actualVerticalPadding
 
   // Display Children In Column
   default property list<QtObject> datax
@@ -40,11 +43,14 @@ Rectangle {
     sourceComponent: Item {
       data: root.datax
 
+      implicitWidth: childrenRect.width
+      implicitHeight: childrenRect.height
+
       anchors.fill: parent
-      anchors.topMargin: verticalPadding && styled ? Config.layout.gap.inner : 0
-      anchors.rightMargin: horizontalPadding && styled ? Config.layout.gap.inner : 0
-      anchors.bottomMargin: verticalPadding && styled ? Config.layout.gap.inner : 0
-      anchors.leftMargin: horizontalPadding && styled ? Config.layout.gap.inner : 0
+      anchors.topMargin: root.actualVerticalPadding
+      anchors.rightMargin: root.actualHorizontalPadding
+      anchors.bottomMargin: root.actualVerticalPadding
+      anchors.leftMargin: root.actualHorizontalPadding
     }
   }
   Loader {
@@ -56,10 +62,10 @@ Rectangle {
       data: root.datax
 
       anchors.fill: parent
-      anchors.topMargin: verticalPadding && styled ? Config.layout.gap.inner : 0
-      anchors.rightMargin: horizontalPadding && styled ? Config.layout.gap.inner : 0
-      anchors.bottomMargin: verticalPadding && styled ? Config.layout.gap.inner : 0
-      anchors.leftMargin: horizontalPadding && styled ? Config.layout.gap.inner : 0
+      anchors.topMargin: root.actualVerticalPadding
+      anchors.rightMargin: root.actualHorizontalPadding
+      anchors.bottomMargin: root.actualVerticalPadding
+      anchors.leftMargin: root.actualHorizontalPadding
       spacing: root.spacing
     }
   }

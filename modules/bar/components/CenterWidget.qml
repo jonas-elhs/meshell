@@ -6,14 +6,12 @@ MultiWidget {
   required property var bar
   required property var settings
 
-  alwaysBorder: root.settings.barCenterWidget == "powerMenu"
-
   WidgetComponent {
     id: workspaces
     isDefault: true
 
     Workspaces {
-      implicitWidth: bar.barWidth
+      width: root.bar.barWidth
       styled: false
     }
   }
