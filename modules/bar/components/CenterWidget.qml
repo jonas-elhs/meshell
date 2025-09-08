@@ -35,4 +35,15 @@ MultiWidget {
       styled: false
     }
   }
+
+  WidgetComponent {
+    id: mediaPlayer
+    condition: root.settings.barCenterWidget == "mediaPlayer"
+
+    Media {
+      settings: root.settings
+      bar: root.bar
+      styled: false
+    }
+  }
 }

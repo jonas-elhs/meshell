@@ -66,6 +66,14 @@ Scope {
     onActivated: (settings) => settings.showBar ? settings.barCenterWidget = "" : null
   }
 
+  // Media Player
+  SettingsShortcut {
+    name: "media"
+    description: "Toggle the media player display"
+
+    onActivated: (settings) => settings.showBar ? settings.toggleBarCenterWidget("mediaPlayer") : null
+  }
+
   component Shortcut : GlobalShortcut {
     appid: "meshell"
   }
