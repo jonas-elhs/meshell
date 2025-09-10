@@ -20,16 +20,14 @@ Item {
     CustomNumberAnimation {}
   }
 
-  anchors {
-    topMargin: Config.layout.gap.size
-    rightMargin: 0
-    leftMargin: settings.showBar ? Config.layout.gap.size : -barWidth
-    bottomMargin: Config.layout.gap.size
+  anchors.topMargin: Config.layout.gap.size
+  anchors.rightMargin: 0
+  anchors.leftMargin: settings.showBar ? Config.layout.gap.size : -barWidth
+  anchors.bottomMargin: Config.layout.gap.size
 
-    top: parent.top
-    bottom: parent.bottom
-    left: parent.left
-  }
+  anchors.top: parent.top
+  anchors.bottom: parent.bottom
+  anchors.left: parent.left
 
   Information {
     id: information

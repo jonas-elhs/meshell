@@ -1,12 +1,14 @@
 import qs.config
+import qs.components
 import Quickshell
 
-PanelWindow {
+CustomWindow {
   id: root
 
   required property var settings
   required property var bar
 
+  name: "exclusions"
   visible: settings.showBar
 
   anchors.left: true

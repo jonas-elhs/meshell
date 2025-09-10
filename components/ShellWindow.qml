@@ -5,18 +5,16 @@ import Quickshell.Wayland
 import Quickshell.Hyprland
 import QtQuick
 
-PanelWindow {
+CustomWindow {
   id: root
 
   required property var settings
 
   // Span Whole Screen
-  anchors {
-    top: true
-    right: true
-    bottom: true
-    left: true
-  }
+  anchors.top: true
+  anchors.right: true
+  anchors.bottom: true
+  anchors.left: true
   exclusionMode: ExclusionMode.Ignore
 
   // Only Click On Children
