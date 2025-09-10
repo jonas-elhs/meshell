@@ -1,6 +1,7 @@
 import qs.components
 import qs.modules
 import qs.modules.bar
+import qs.modules.background
 import qs.modules.notifications
 import Quickshell
 
@@ -24,6 +25,12 @@ ShellRoot {
         // Notifications {
         //   id: notifications
         // }
+      }
+
+      Background {
+        id: background
+        screen: scope.modelData
+        settings: settings
       }
 
       Settings {
