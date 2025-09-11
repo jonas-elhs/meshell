@@ -26,8 +26,8 @@ BarModule {
     model: workspaces
 
     Rectangle {
-      property HyprlandWorkspace workspace: workspaces[index]
-      readonly property bool focused: Hyprland.focusedWorkspace.id == workspace.id
+      required property HyprlandWorkspace modelData
+      readonly property bool focused: (Hyprland.focusedWorkspace?.id ?? -1) == modelData.id
       readonly property int diameter: 10
 
       anchors.horizontalCenter: parent.horizontalCenter
