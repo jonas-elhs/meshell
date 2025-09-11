@@ -9,18 +9,19 @@ Item {
 
   anchors.fill: parent
 
-  property bool morph: false
+  property bool morph: true
 
   required property var settings
   property bool oneActive: true
   property list<QtObject> wallpapers: []
 
   // Render wallpaper on start
-  Timer {
-    running: true
-    interval: 0
-    onTriggered: spawnWallpaper(true)
-  }
+  Component.onCompleted: spawnWallpaper(true)
+  // Timer {
+  //   running: true
+  //   interval: 1
+  //   onTriggered: spawnWallpaper(true)
+  // }
 
   // Update wallpaper
   Connections {
@@ -93,6 +94,8 @@ Item {
         fillMode: Image.PreserveAspectCrop
 
         Behavior on opacity {
+          enabled: !wallpaper.immediate
+
           SequentialAnimation {
             CustomNumberAnimation {
               duration: 700

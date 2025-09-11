@@ -12,7 +12,7 @@ CustomWindow {
   screen: root.screen
   WlrLayershell.layer: WlrLayer.Background
   exclusionMode: ExclusionMode.Ignore
-  color: "white"
+  color: "black"
 
   anchors.top: true
   anchors.right: true
