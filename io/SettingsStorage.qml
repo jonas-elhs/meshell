@@ -10,6 +10,10 @@ Singleton {
     screenSettings.set(Hyprland.monitorFor(screen), settings)
   }
 
+  function get(screen: ShellScreen): var {
+    return screenSettings.get(Hyprland.monitorFor(screen))
+  }
+
   function getForActive() {
     return screenSettings.get(Hyprland.focusedMonitor)
   }

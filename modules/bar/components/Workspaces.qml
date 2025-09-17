@@ -40,7 +40,7 @@ BarModule {
       // Switch To Workspace On Click
       MouseArea {
         anchors.fill: parent
-        onClicked: Hyprland.dispatch(`workspace ${workspace.id}`)
+        onClicked: Hyprland.dispatch(`workspace ${modelData.id}`)
       }
 
       // Animations

@@ -17,11 +17,6 @@ Item {
 
   // Render wallpaper on start
   Component.onCompleted: spawnWallpaper(true)
-  // Timer {
-  //   running: true
-  //   interval: 1
-  //   onTriggered: spawnWallpaper(true)
-  // }
 
   // Update wallpaper
   Connections {
