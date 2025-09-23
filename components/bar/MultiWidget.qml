@@ -14,9 +14,12 @@ BarModule {
   padding: loader.item.padding
   horizontalPadding: loader.item.horizontalPadding
   verticalPadding: loader.item.verticalPadding
+  leftMargin: loader.item.leftMargin
   alwaysBorder: loader.item.alwaysBorder
+  showWhenLocked: loader.item.showWhenLocked
   acceptedButtons: loader.item.acceptedButtons
   spacing: loader.item.spacing
+  transparent: loader.item.transparent
   onWheel: loader.item.onWheel
   onLeftClicked: loader.item.onLeftClicked
   onMiddleClicked: loader.item.onMiddleClicked

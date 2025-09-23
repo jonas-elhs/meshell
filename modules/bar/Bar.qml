@@ -7,7 +7,9 @@ Item {
   id: bar
 
   required property var settings
+  required property var screen
 
+  property alias center: centerWidget
   property int barWidth
   Component.onCompleted: bar.barWidth = Math.max(information.implicitWidth, clock.implicitWidth, performance.implicitWidth, performance.implicitWidth)
 
@@ -45,6 +47,7 @@ Item {
     id: centerWidget
     bar: bar
     settings: bar.settings
+    screen: bar.screen
 
     anchors.verticalCenter: bar.verticalCenter
   }

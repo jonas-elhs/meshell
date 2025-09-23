@@ -10,6 +10,8 @@ CustomWindow {
 
   required property var settings
 
+  WlrLayershell.namespace: "meshell-shell"
+
   // Span Whole Screen
   anchors.top: true
   anchors.right: true

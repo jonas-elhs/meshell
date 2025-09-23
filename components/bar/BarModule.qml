@@ -1,4 +1,5 @@
 import qs.config
+import qs.modules
 import qs.components.animations
 import QtQuick
 
@@ -8,8 +9,11 @@ Rectangle {
   property int padding: Config.layout.gap.inner
   property int horizontalPadding: padding
   property int verticalPadding: padding
+  property int leftMargin: 0
   property bool alwaysBorder: false
+  property bool showWhenLocked: false
   property bool styled: true
+  property bool transparent: false
 
   property int acceptedButtons: Qt.AllButtons
   property int spacing: Config.layout.gap.inner
@@ -26,9 +30,11 @@ Rectangle {
   readonly property int actualVerticalPadding: styled ? verticalPadding: 0
 
   radius: styled ? Config.layout.border.radius.size : 0
-  color: styled ? `#${Config.layout.background.opacity_hex}${Config.colors.background.base.substring(1)}` : "transparent"
+  color: styled ? transparent ? "#01000000" : `#${Config.layout.background.opacity_hex}${Config.colors.background.base.substring(1)}` : "transparent"
   border.width: styled ? Config.layout.border.width : 0
   border.color: hoverState.hovered || alwaysBorder ? Config.colors.accent : Config.colors.inactive
+  x: leftMargin
+  opacity: GlobalSettings.locked && !showWhenLocked ? 0 : 1
 
   implicitWidth: wrapper.implicitWidth + 2 * actualHorizontalPadding
   implicitHeight: wrapper.implicitHeight + 2 * actualVerticalPadding
@@ -68,6 +74,13 @@ Rectangle {
       anchors.leftMargin: root.actualHorizontalPadding
       spacing: root.spacing
     }
+  }
+
+  Behavior on x {
+    CustomNumberAnimation {}
+  }
+  Behavior on opacity {
+    CustomNumberAnimation {}
   }
 
   // Border Change On Hover

@@ -1,10 +1,13 @@
+import qs.modules
 import qs.components.bar
+import qs.modules.bar.components.center
 
 MultiWidget {
   id: root
 
   required property var bar
   required property var settings
+  required property var screen
 
   WidgetComponent {
     id: workspaces
@@ -12,6 +15,16 @@ MultiWidget {
 
     Workspaces {
       width: root.bar.barWidth
+      styled: false
+    }
+  }
+
+  WidgetComponent {
+    id: lockedBackground
+    condition: GlobalSettings.locked == true
+
+    Locked {
+      screen: root.screen
       styled: false
     }
   }

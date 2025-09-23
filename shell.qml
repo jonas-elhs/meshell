@@ -1,6 +1,7 @@
 import qs.components
 import qs.modules
 import qs.modules.bar
+import qs.modules.lock
 import qs.modules.background
 import qs.modules.notifications
 import Quickshell
@@ -13,6 +14,11 @@ ShellRoot {
       id: scope
       property ShellScreen modelData
 
+      LockBackground {
+        barCenter: bar.center
+        settings: settings
+      }
+
       ShellWindow {
         id: shell
         settings: settings
@@ -20,6 +26,7 @@ ShellRoot {
         Bar {
           id: bar
           settings: settings
+          screen: scope.modelData
         }
 
         // Notifications {
@@ -44,6 +51,8 @@ ShellRoot {
       }
     }
   }
+
+  Lock {}
 
   HyprlandShortcuts {}
 }

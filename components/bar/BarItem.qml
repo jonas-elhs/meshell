@@ -10,7 +10,7 @@ Item {
   // Not working properly (text not positioned correctly)
   property bool verticalText: false
   property bool boldIcon: false
-  property int textSize: Config.layout.font.title
+  property int textSize: 15
   property int acceptedButtons: Qt.AllButtons
 
   signal leftClicked(MouseEvent event)
@@ -39,7 +39,7 @@ Item {
       id: text
 
       text: root.text
-      font.pixelSize: root.textSize
+      size: root.textSize
       rotation: root.verticalText ? 270 : 0
       width: root.verticalText ? implicitHeight : implicitWidth
       height: root.verticalText ? implicitWidth : implicitHeight

@@ -48,7 +48,7 @@ BarModule {
   PowerButton {
     id: lock
     icon: "lock"
-    command: "sleep 0.2 && loginctl lock-session"
+    command: "hyprctl dispatch global meshell:lock"
 
     KeyNavigation.up: reboot
     KeyNavigation.down: suspend
