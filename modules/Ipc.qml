@@ -60,5 +60,8 @@ Scope {
     function set(path: string): void {
       SettingsStorage.getForActive().wallpaperPath = path
     }
+    function get(): string {
+      return SettingsStorage.getForActive().wallpaperPath
+    }
   }
 }
