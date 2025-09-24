@@ -36,14 +36,6 @@ Item {
     root.wallpapers.push(wallpaper)
   }
 
-  IpcHandler {
-    target: "wallpaper"
-
-    function set(path: string): void {
-      settings.wallpaperPath = path
-    }
-  }
-
   Component {
     id: wallpaperImage
 
