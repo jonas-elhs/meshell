@@ -1,6 +1,6 @@
 import argparse
 
-from meshell.subcommands import bar, powermenu, picker, wallpaper
+from meshell.subcommands import bar, powermenu, picker, wallpaper, lockscreen
 
 def parse_args() -> (argparse.ArgumentParser, argparse.Namespace):
   parser = argparse.ArgumentParser(prog="meshell", description="Meshell control script")
@@ -40,7 +40,7 @@ def parse_args() -> (argparse.ArgumentParser, argparse.Namespace):
   wallpaper_set_parser.add_argument("path", action="store", help="path to the new wallpaper")
 
   # Lockscreen
-  # lock_parser = subcommands.add_parser("bar", help="control the bar")
-  # lock_parser.add_argument("action", choices=["lock", "hide"], nargs="?", help="action to be done")
+  subcommands.add_parser("lock", help="lock the screen").set_defaults(execute=lockscreen.lock)
+  subcommands.add_parser("unlock", help="unlock the screen").set_defaults(execute=lockscreen.unlock)
   
   return parser, parser.parse_args()
