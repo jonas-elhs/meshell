@@ -1,6 +1,6 @@
 import argparse
 
-from meshell.subcommands import bar, powermenu, picker, wallpaper, lockscreen
+from meshell.subcommands import bar, powermenu, colorpicker, wallpaper, lockscreen
 
 def parse_args() -> (argparse.ArgumentParser, argparse.Namespace):
   parser = argparse.ArgumentParser(prog="meshell", description="Meshell control script")
@@ -26,7 +26,7 @@ def parse_args() -> (argparse.ArgumentParser, argparse.Namespace):
 
   # Color Picker
   picker_parser = subcommands.add_parser("pick", help="pick a color")
-  picker_parser.set_defaults(execute=picker.pick)
+  picker_parser.set_defaults(execute=colorpicker.pick)
   picker_parser.add_argument("format", choices=["hex", "rgb", "hsl", "hsv"], help="format of picked color (hex, rgb, hsl, hsv)")
   picker_parser.add_argument("-c", "--copy", action="store_true", help="copy the color to clipboard")
 
