@@ -10,7 +10,7 @@ Item {
   // Not working properly (text not positioned correctly)
   property bool verticalText: false
   property bool boldIcon: false
-  property int textSize: 15
+  property int textSize: 13
   property int acceptedButtons: Qt.AllButtons
 
   signal leftClicked(MouseEvent event)
