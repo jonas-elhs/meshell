@@ -64,4 +64,15 @@ Scope {
       return SettingsStorage.getForActive().wallpaperPath
     }
   }
+
+  IpcHandler {
+    target: "lockscreen"
+
+    function lock(): void {
+      GlobalSettings.locked = true
+    }
+    function unlock(): void {
+      GlobalSettings.locked = false
+    }
+  }
 }

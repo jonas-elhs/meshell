@@ -66,6 +66,18 @@ Scope {
     onActivated: (settings) => settings.showBar ? settings.barCenterWidget = "" : null
   }
 
+  // Lock
+  GlobalShortcut {
+    appid: "meshell"
+    name: "lock"
+    onPressed: GlobalSettings.locked = true
+  }
+  GlobalShortcut {
+    appid: "meshell"
+    name: "unlock"
+    onPressed: GlobalSettings.locked = false
+  }
+
   // Media Player
   SettingsShortcut {
     name: "media"

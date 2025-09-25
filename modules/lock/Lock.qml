@@ -36,12 +36,6 @@ Scope {
     }
   }
 
-  GlobalShortcut {
-    appid: "meshell"
-    name: "lock"
-    onPressed: GlobalSettings.locked = !GlobalSettings.locked
-  }
-
   Pam {
     id: pam
   }
