@@ -9,13 +9,13 @@
     pkgs = nixpkgs.legacyPackages.x86_64-linux;
   in {
     packages.x86_64-linux = rec {
-      meshell = pkgs.callPackage ./default.nix {};
-      default = meshell;
+      cli = pkgs.callPackage ./cli/package.nix {};
+      default = cli;
     };
 
     devShells.x86_64-linux = {
       default = pkgs.mkShellNoCC {
-        packages = [ self.packages.x86_64-linux.meshell ];
+        packages = [ self.packages.x86_64-linux.cli ];
       };
     };
   };
