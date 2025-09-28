@@ -29,9 +29,9 @@ ShellRoot {
           screen: scope.modelData
         }
 
-        // Notifications {
-        //   id: notifications
-        // }
+        Notifications {
+          id: notifications
+        }
       }
 
       Background {

@@ -15,6 +15,7 @@ Item {
     }
     anchors.fill: parent
     orientation: ListView.Vertical
+    spacing: 10
 
     delegate: NotificationWrapper {}
   }
