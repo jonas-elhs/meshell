@@ -7,7 +7,7 @@ import Quickshell.Hyprland
 BarModule {
   id: root
 
-  property list<HyprlandWorkspace> workspaces: Hyprland.workspaces.values
+  property int workspaces: Hyprland.workspaces.values.length >= 5 ? Hyprland.workspaces.values.length : 5
 
   verticalPadding: Config.layout.gap.inner * 1.5
   horizontalPadding: 0
@@ -26,9 +26,9 @@ BarModule {
     model: workspaces
 
     Rectangle {
-      required property HyprlandWorkspace modelData
-      readonly property bool focused: (Hyprland.focusedWorkspace?.id ?? -1) == modelData.id
-      readonly property int diameter: 10
+      property int workspaceId: Hyprland.workspaces.values[index]?.id ?? -1
+      property bool focused: (Hyprland.focusedWorkspace?.id ?? -1) == workspaceId
+      property int diameter: 10
 
       anchors.horizontalCenter: parent.horizontalCenter
 
