@@ -13,6 +13,7 @@ def parse_args() -> (argparse.ArgumentParser, argparse.Namespace):
   subcommands.add_parser("start", help="start the shell").set_defaults(execute=shell.start)
   subcommands.add_parser("stop", help="stop the shell").set_defaults(execute=shell.stop)
   subcommands.add_parser("restart", help="restart the shell").set_defaults(execute=shell.restart)
+  subcommands.add_parser("running", help="check if the shell is currently running").set_defaults(execute=shell.running)
 
   # Bar
   bar_parser = subcommands.add_parser("bar", help="control the bar")
