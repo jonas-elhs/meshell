@@ -6,6 +6,14 @@ import QtQuick
 Scope {
   id: root
 
+  // Shell
+  Shortcut {
+    name: "kill"
+    description: "Kill the shell"
+
+    onPressed: Qt.quit()
+  }
+
   // Bar
   SettingsShortcut {
     name: "bar"

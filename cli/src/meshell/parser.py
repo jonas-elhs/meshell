@@ -1,12 +1,18 @@
 import argparse
 
 from meshell.subcommands import bar, powermenu, colorpicker, wallpaper, lockscreen
+from meshell import shell
 
 def parse_args() -> (argparse.ArgumentParser, argparse.Namespace):
   parser = argparse.ArgumentParser(prog="meshell", description="Meshell control script")
   parser.add_argument("-v", "--version", action="store_true", help="print the current version")
 
   subcommands = parser.add_subparsers(title="commands", metavar="COMMAND")
+
+  # Shell
+  subcommands.add_parser("start", help="start the shell").set_defaults(execute=shell.start)
+  subcommands.add_parser("stop", help="stop the shell").set_defaults(execute=shell.stop)
+  subcommands.add_parser("restart", help="restart the shell").set_defaults(execute=shell.restart)
 
   # Bar
   bar_parser = subcommands.add_parser("bar", help="control the bar")

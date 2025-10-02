@@ -6,6 +6,14 @@ Scope {
   id: root
 
   IpcHandler {
+    target: "shell"
+
+    function kill() {
+      Qt.quit()
+    }
+  }
+
+  IpcHandler {
     target: "bar"
 
     function toggle(): void {
