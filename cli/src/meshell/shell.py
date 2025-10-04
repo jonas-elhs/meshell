@@ -2,8 +2,6 @@ from argparse import Namespace
 import subprocess
 import sys
 
-import time
-
 def start(args: Namespace) -> None:
   command = [ "quickshell", "-c", "meshell" ]
 
