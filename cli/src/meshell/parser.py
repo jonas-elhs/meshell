@@ -10,9 +10,16 @@ def parse_args() -> (argparse.ArgumentParser, argparse.Namespace):
   subcommands = parser.add_subparsers(title="commands", metavar="COMMAND")
 
   # Shell
-  subcommands.add_parser("start", help="start the shell").set_defaults(execute=shell.start)
-  subcommands.add_parser("stop", help="stop the shell").set_defaults(execute=shell.stop)
-  subcommands.add_parser("restart", help="restart the shell").set_defaults(execute=shell.restart)
+  start_parser = subcommands.add_parser("start", help="start the shell")
+  start_parser.set_defaults(execute=shell.start)
+  start_parser.add_argument("-s", "--sub-process", action="store_true", help="start as a sub process")
+  stop_parser = subcommands.add_parser("stop", help="stop the shell")
+  stop_parser.set_defaults(execute=shell.stop)
+  stop_parser.add_argument("-a", "--all", action="store_true", help="stop all running instances")
+  restart_parser = subcommands.add_parser("restart", help="restart the shell")
+  restart_parser.set_defaults(execute=shell.restart)
+  restart_parser.add_argument("-s", "--sub-process", action="store_true", help="start as a sub process")
+  restart_parser.add_argument("-a", "--all", action="store_true", help="stop all running instances")
   subcommands.add_parser("running", help="check if the shell is currently running").set_defaults(execute=shell.running)
 
   # Bar
