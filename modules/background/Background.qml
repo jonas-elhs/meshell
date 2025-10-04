@@ -6,7 +6,6 @@ CustomWindow {
   id: root
 
   required property ShellScreen screen
-  required property var settings
 
   name: "background"
   screen: root.screen
@@ -21,7 +20,5 @@ CustomWindow {
 
   mask: Region {}
 
-  Wallpaper {
-    settings: root.settings
-  }
+  Wallpaper { }
 }

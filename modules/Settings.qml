@@ -9,7 +9,6 @@ PersistentProperties {
   property bool showBar: true
   property string barCenterWidget: ""
   property string colorPickerColorType: ""
-  property string wallpaperPath: "/home/ilzayn/.wall"
 
   function toggleBarCenterWidget(widget: string) {
     if (root.barCenterWidget == widget) {

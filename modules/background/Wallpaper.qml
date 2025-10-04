@@ -1,3 +1,4 @@
+import qs.io
 import qs.components.animations
 import Quickshell.Widgets
 import Quickshell.Hyprland
@@ -11,7 +12,6 @@ Item {
 
   property bool morph: true
 
-  required property var settings
   property bool oneActive: true
   property list<QtObject> wallpapers: []
 
@@ -20,16 +20,16 @@ Item {
 
   // Update wallpaper
   Connections {
-    target: settings
+    target: Wallpapers
 
-    function onWallpaperPathChanged() {
+    function onCurrentChanged() {
       spawnWallpaper()
     }
   }
 
   function spawnWallpaper(immediate: bool): QtObject {
     const wallpaper = wallpaperImage.createObject(root, {
-      wallpaperPath: settings.wallpaperPath,
+      wallpaperPath: Wallpapers.current,
       immediate: immediate ?? false
     })
 

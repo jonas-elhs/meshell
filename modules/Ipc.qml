@@ -66,10 +66,10 @@ Scope {
     target: "wallpaper"
 
     function set(path: string): void {
-      SettingsStorage.getForActive().wallpaperPath = path
+      Wallpapers.current = path
     }
     function get(): string {
-      return SettingsStorage.getForActive().wallpaperPath
+      return Wallpapers.current
     }
   }
 

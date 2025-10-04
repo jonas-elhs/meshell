@@ -37,7 +37,6 @@ ShellRoot {
       Background {
         id: background
         screen: scope.modelData
-        settings: settings
       }
 
       Settings {

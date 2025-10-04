@@ -1,3 +1,4 @@
+import qs.io
 import qs.config
 import qs.modules
 import qs.components
@@ -49,7 +50,7 @@ CustomWindow {
         width: root.width
         height: root.height
 
-        source: settings.wallpaperPath
+        source: Wallpapers.current
         fillMode: Image.PreserveAspectCrop
       }
     }
