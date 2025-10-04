@@ -78,11 +78,15 @@ Scope {
   GlobalShortcut {
     appid: "meshell"
     name: "lock"
+    description: "Lock the current session"
+
     onPressed: GlobalSettings.locked = true
   }
   GlobalShortcut {
     appid: "meshell"
     name: "unlock"
+    description: "Unlock the current session"
+
     onPressed: GlobalSettings.locked = false
   }
 
