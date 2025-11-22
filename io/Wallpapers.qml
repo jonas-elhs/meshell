@@ -7,7 +7,7 @@ import QtQuick
 Singleton {
   id: root
 
-  property string current: "/home/ilzayn/wallpapers/moon.png"
+  property string current: "/home/jonas/wallpapers/moon.png"
   property list<string> list: []
 
   function set(wallpaper: string) {
