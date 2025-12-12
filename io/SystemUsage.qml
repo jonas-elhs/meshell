@@ -7,7 +7,9 @@ import QtQuick
 Singleton {
   id: root
 
-  property real cpuPercentage: 0
+  property real cpuUsed: 0
+  property real cpuTotal: 0
+  property real cpuPercentage: cpuTotal > 0 ? cpuUsed / cpuTotal : 0
   property int cpuPercentageDisplay: cpuPercentage * 100
 
   property string gpuType: "NONE"
@@ -49,11 +51,8 @@ Singleton {
       if (data) {
         const stats = data.slice(1).map(number => parseInt(number));
 
-        const total = stats.reduce((accumulator, stat) => accumulator + stat);
-        const idle = stats[3] + (stats[4] ?? 0);
-        const used = total - idle;
-
-        root.cpuPercentage = used / total;
+        root.cpuTotal = stats.reduce((accumulator, stat) => accumulator + stat);
+        root.cpuUsed = root.cpuTotal - stats[3] + (stats[4] ?? 0);
       }
     }
   }
@@ -97,7 +96,7 @@ Singleton {
       const text = memory.text();
 
       root.memoryTotal = parseInt(text.match(/MemTotal:\s*(\d+)/)[1]) || 1;
-      root.memoryUsed = (memoryTotal - parseInt(text.match(/MemAvailable:\s*(\d+)/)[1])) || 1;
+      root.memoryUsed = (root.memoryTotal - parseInt(text.match(/MemAvailable:\s*(\d+)/)[1])) || 1;
     }
   }
 
@@ -111,11 +110,8 @@ Singleton {
         const parts = text.trim().split(/\s+/);
 
         if (parts.length >= 2) {
-          const storageUsed = parseInt(parts[0]) || 0;
-          const storageAvailable = parseInt(parts[1]) || 0;
-
-          root.storageUsed = storageUsed;
-          root.storageTotal = storageUsed + storageAvailable;
+          root.storageUsed = parseInt(parts[0]) || 0;
+          root.storageTotal = storageUsed + parseInt(parts[1]) || 0;
         }
       }
     }
