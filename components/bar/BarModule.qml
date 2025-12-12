@@ -17,7 +17,6 @@ Rectangle {
 
   property int acceptedButtons: Qt.AllButtons
   property int spacing: Config.layout.gap.inner
-  property bool column: true
 
   signal wheel(direction: string, event: WheelEvent)
   signal leftClicked(MouseEvent event)
@@ -25,7 +24,6 @@ Rectangle {
   signal rightClicked(MouseEvent event)
   signal clicked(event: MouseEvent)
 
-  readonly property Item wrapper: root.column == true ? columnWrapper.item : itemWrapper.item
   readonly property int actualHorizontalPadding: styled ? horizontalPadding : 0
   readonly property int actualVerticalPadding: styled ? verticalPadding : 0
 
@@ -36,44 +34,22 @@ Rectangle {
   x: leftMargin
   opacity: GlobalSettings.locked && !showWhenLocked ? 0 : 1
 
-  implicitWidth: wrapper.implicitWidth + 2 * actualHorizontalPadding
-  implicitHeight: wrapper.implicitHeight + 2 * actualVerticalPadding
+  implicitWidth: column.implicitWidth + 2 * actualHorizontalPadding
+  implicitHeight: column.implicitHeight + 2 * actualVerticalPadding
 
   // Display Children In Column
   default property list<QtObject> datax
-  Loader {
-    id: itemWrapper
+  Column {
+    id: column
 
-    active: root.column == false
+    data: root.datax
+
     anchors.fill: parent
-    sourceComponent: Item {
-      data: root.datax
-
-      implicitWidth: childrenRect.width
-      implicitHeight: childrenRect.height
-
-      anchors.fill: parent
-      anchors.topMargin: root.actualVerticalPadding
-      anchors.rightMargin: root.actualHorizontalPadding
-      anchors.bottomMargin: root.actualVerticalPadding
-      anchors.leftMargin: root.actualHorizontalPadding
-    }
-  }
-  Loader {
-    id: columnWrapper
-
-    active: root.column == true
-    anchors.fill: parent
-    sourceComponent: Column {
-      data: root.datax
-
-      anchors.fill: parent
-      anchors.topMargin: root.actualVerticalPadding
-      anchors.rightMargin: root.actualHorizontalPadding
-      anchors.bottomMargin: root.actualVerticalPadding
-      anchors.leftMargin: root.actualHorizontalPadding
-      spacing: root.spacing
-    }
+    anchors.topMargin: root.actualVerticalPadding
+    anchors.rightMargin: root.actualHorizontalPadding
+    anchors.bottomMargin: root.actualVerticalPadding
+    anchors.leftMargin: root.actualHorizontalPadding
+    spacing: root.spacing
   }
 
   Behavior on x {

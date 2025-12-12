@@ -12,7 +12,6 @@ BarModule {
   required property var bar
 
   width: bar.barWidth * 6
-  column: false
 
   ClippingRectangle {
     id: thumbnail
