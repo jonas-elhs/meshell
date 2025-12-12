@@ -9,7 +9,7 @@ Scope {
     target: "shell"
 
     function kill() {
-      Qt.quit()
+      Qt.quit();
     }
   }
 
@@ -17,12 +17,12 @@ Scope {
     target: "bar"
 
     function toggle(): void {
-      let settings = SettingsStorage.getForActive()
+      let settings = SettingsStorage.getForActive();
 
-      settings.showBar = !settings.showBar
+      settings.showBar = !settings.showBar;
     }
     function display(show: bool): void {
-      SettingsStorage.getForActive().showBar = show
+      SettingsStorage.getForActive().showBar = show;
     }
   }
 
@@ -30,16 +30,16 @@ Scope {
     target: "power"
 
     function toggle(): void {
-      SettingsStorage.getForActive().toggleBarCenterWidget("powerMenu")
+      SettingsStorage.getForActive().toggleBarCenterWidget("powerMenu");
     }
     function display(show: bool): void {
-      let settings = SettingsStorage.getForActive()
+      let settings = SettingsStorage.getForActive();
 
       if (show) {
-        settings.barCenterWidget = "powerMenu"
+        settings.barCenterWidget = "powerMenu";
       } else {
         if (settings.barCenterWidget == "powerMenu") {
-          settings.barCenterWidget = ""
+          settings.barCenterWidget = "";
         }
       }
     }
@@ -50,14 +50,14 @@ Scope {
 
     function pick(format: string, copy: bool) {
       if (["rgb", "hex", "hsl", "hsv"].includes(format)) {
-        ColorPicker.pickColor(format, SettingsStorage.getForActive(), copy)
+        ColorPicker.pickColor(format, SettingsStorage.getForActive(), copy);
       }
     }
     function hide(): void {
-      settings = SettingsStorage.getForActive()
+      settings = SettingsStorage.getForActive();
 
       if (settings.barCenterWidget == "colorPicker") {
-        settings.barCenterWidget = ""
+        settings.barCenterWidget = "";
       }
     }
   }
@@ -66,10 +66,10 @@ Scope {
     target: "wallpaper"
 
     function set(path: string): void {
-      Wallpapers.current = path
+      Wallpapers.current = path;
     }
     function get(): string {
-      return Wallpapers.current
+      return Wallpapers.current;
     }
   }
 
@@ -77,10 +77,10 @@ Scope {
     target: "lockscreen"
 
     function lock(): void {
-      GlobalSettings.locked = true
+      GlobalSettings.locked = true;
     }
     function unlock(): void {
-      GlobalSettings.locked = false
+      GlobalSettings.locked = false;
     }
   }
 }

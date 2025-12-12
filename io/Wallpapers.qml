@@ -11,14 +11,14 @@ Singleton {
   property list<string> list: []
 
   function set(wallpaper: string) {
-    root.current = wallpaper
+    root.current = wallpaper;
   }
 
   function updateList() {
-    list = []
+    list = [];
 
     for (let index = 0; index < folderModel.count; index++) {
-      list.push(folderModel.get(index, "filePath"))
+      list.push(folderModel.get(index, "filePath"));
     }
   }
 
@@ -26,9 +26,10 @@ Singleton {
     id: folderModel
 
     folder: "file:///home/ilzayn/wallpapers"
-    nameFilters: [ "*.png", "*.jpg", "*.jpeg" ]
+    nameFilters: ["*.png", "*.jpg", "*.jpeg"]
     showDirs: false
 
-    onStatusChanged: if (status == FolderListModel.Ready) root.updateList()
+    onStatusChanged: if (status == FolderListModel.Ready)
+      root.updateList()
   }
 }

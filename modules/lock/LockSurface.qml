@@ -29,7 +29,7 @@ WlSessionLockSurface {
     anchors.fill: parent
     focus: true
     Keys.onPressed: event => {
-      pam.handleKey(event)
+      pam.handleKey(event);
     }
 
     CustomText {
@@ -61,12 +61,7 @@ WlSessionLockSurface {
       anchors.verticalCenter: parent.verticalCenter
       anchors.verticalCenterOffset: -100
 
-      property int targetWidth: Math.max(
-        250,
-        user.width + 2 * Config.layout.gap.inner,
-        message.width + 2 * Config.layout.gap.inner,
-        password.width + 2 * Config.layout.gap.inner
-      )
+      property int targetWidth: Math.max(250, user.width + 2 * Config.layout.gap.inner, message.width + 2 * Config.layout.gap.inner, password.width + 2 * Config.layout.gap.inner)
 
       width: targetWidth
       height: 50
@@ -104,10 +99,14 @@ WlSessionLockSurface {
 
         text: {
           switch (pam.state) {
-            case "fail": return "Incorrect password. Please try again."
-            case "max": return "Maximum password attempts reached."
-            case "error": return "Error while authenticating."
-            default: return pam.state
+          case "fail":
+            return "Incorrect password. Please try again.";
+          case "max":
+            return "Maximum password attempts reached.";
+          case "error":
+            return "Error while authenticating.";
+          default:
+            return pam.state;
           }
         }
 
@@ -125,17 +124,19 @@ WlSessionLockSurface {
         x: inputContainer.targetWidth / 2 - width / 2
         spacing: Config.layout.gap.inner / 2
 
-        ListModel { id: lengthModel }
+        ListModel {
+          id: lengthModel
+        }
         Connections {
           target: pam
 
           function onBufferChanged() {
             if (pam.buffer.length > lengthModel.count) {
-              lengthModel.append({})
+              lengthModel.append({});
             } else if (pam.buffer.length == 0) {
-              lengthModel.clear()
+              lengthModel.clear();
             } else if (pam.buffer.length < lengthModel.count) {
-              lengthModel.remove(lengthModel.count - 1)
+              lengthModel.remove(lengthModel.count - 1);
             }
           }
         }
@@ -192,7 +193,7 @@ WlSessionLockSurface {
   Process {
     running: true
 
-    command: [ "whoami" ]
+    command: ["whoami"]
     stdout: StdioCollector {
       onStreamFinished: root.user = text.trim()
     }
@@ -202,7 +203,7 @@ WlSessionLockSurface {
     target: root.lock
 
     function onUnlock() {
-      unlockAnimation.running = true
+      unlockAnimation.running = true;
     }
   }
 

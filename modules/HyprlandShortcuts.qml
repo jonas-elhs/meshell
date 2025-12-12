@@ -19,19 +19,19 @@ Scope {
     name: "bar"
     description: "Toggle the bar"
 
-    onActivated: (settings) => settings.showBar = !settings.showBar
+    onActivated: settings => settings.showBar = !settings.showBar
   }
   SettingsShortcut {
     name: "showBar"
     description: "Show the bar"
 
-    onActivated: (settings) => settings.showBar = true
+    onActivated: settings => settings.showBar = true
   }
   SettingsShortcut {
     name: "hideBar"
     description: "Hide the bar"
 
-    onActivated: (settings) => settings.showBar = false
+    onActivated: settings => settings.showBar = false
   }
 
   // Power Menu
@@ -39,19 +39,19 @@ Scope {
     name: "powerMenu"
     description: "Toggle the power menu"
 
-    onActivated: (settings) => settings.showBar ? settings.toggleBarCenterWidget("powerMenu") : null
+    onActivated: settings => settings.showBar ? settings.toggleBarCenterWidget("powerMenu") : null
   }
   SettingsShortcut {
     name: "showPowerMenu"
     description: "Show the power menu"
 
-    onActivated: (settings) => settings.showBar ? settings.barCenterWidget = "powerMenu" : null
+    onActivated: settings => settings.showBar ? settings.barCenterWidget = "powerMenu" : null
   }
   SettingsShortcut {
     name: "hidePowerMenu"
     description: "Hide the power menu"
 
-    onActivated: (settings) => settings.showBar ? settings.barCenterWidget = "" : null
+    onActivated: settings => settings.showBar ? settings.barCenterWidget = "" : null
   }
 
   // Color Picker
@@ -71,7 +71,7 @@ Scope {
     name: "hideColorPicker"
     description: "Hide the color picker"
 
-    onActivated: (settings) => settings.showBar ? settings.barCenterWidget = "" : null
+    onActivated: settings => settings.showBar ? settings.barCenterWidget = "" : null
   }
 
   // Lock
@@ -95,29 +95,31 @@ Scope {
     name: "media"
     description: "Toggle the media player display"
 
-    onActivated: (settings) => settings.showBar ? settings.toggleBarCenterWidget("mediaPlayer") : null
+    onActivated: settings => settings.showBar ? settings.toggleBarCenterWidget("mediaPlayer") : null
   }
 
-  component Shortcut : GlobalShortcut {
+  component Shortcut: GlobalShortcut {
     appid: "meshell"
   }
-  component SettingsShortcut : Shortcut {
+  component SettingsShortcut: Shortcut {
     signal activated(settings: var)
     property bool released: false
 
-    onPressed: if (!released) activated(SettingsStorage.getForActive())
-    onReleased: if (released) activated(SettingsStorage.getForActive())
+    onPressed: if (!released)
+      activated(SettingsStorage.getForActive())
+    onReleased: if (released)
+      activated(SettingsStorage.getForActive())
   }
-  component ColorPickerShortcut : Item {
+  component ColorPickerShortcut: Item {
     property string colorType: ""
 
     SettingsShortcut {
       name: `pick${colorType.charAt(0).toUpperCase() + colorType.slice(1)}Color`
       description: `Pick a ${colorType.toUpperCase()} color`
 
-      onActivated: (settings) => {
+      onActivated: settings => {
         if (settings.showBar) {
-          ColorPicker.pickColor(colorType, settings)
+          ColorPicker.pickColor(colorType, settings);
         }
       }
     }
@@ -125,9 +127,9 @@ Scope {
       name: `pick${colorType.charAt(0).toUpperCase() + colorType.slice(1)}ColorCopy`
       description: `Pick a ${colorType.toUpperCase()} color`
 
-      onActivated: (settings) => {
+      onActivated: settings => {
         if (settings.showBar) {
-          ColorPicker.pickColor(colorType, settings, true)
+          ColorPicker.pickColor(colorType, settings, true);
         }
       }
     }

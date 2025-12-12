@@ -31,11 +31,11 @@ Singleton {
     triggeredOnStart: true
 
     onTriggered: {
-      cpu.reload()
-      gpuType.running = true
-      gpu.running = true
-      memory.reload()
-      storage.running = true
+      cpu.reload();
+      gpuType.running = true;
+      gpu.running = true;
+      memory.reload();
+      storage.running = true;
     }
   }
 
@@ -44,24 +44,24 @@ Singleton {
 
     path: "/proc/stat"
     onLoaded: {
-      const data = this.text().match(/^cpu  (\d+) (\d+) (\d+) (\d+) (\d+) (\d+) (\d+)/)
+      const data = this.text().match(/^cpu  (\d+) (\d+) (\d+) (\d+) (\d+) (\d+) (\d+)/);
 
       if (data) {
-        const stats = data.slice(1).map((number) => parseInt(number))
+        const stats = data.slice(1).map(number => parseInt(number));
 
-        const total = stats.reduce((accumulator, stat) => accumulator + stat)
-        const idle = stats[3] + (stats[4] ?? 0)
-        const used = total - idle
+        const total = stats.reduce((accumulator, stat) => accumulator + stat);
+        const idle = stats[3] + (stats[4] ?? 0);
+        const used = total - idle;
 
-        root.cpuPercentage = used / total
+        root.cpuPercentage = used / total;
       }
     }
   }
 
   Process {
     id: gpuType
-    
-    command: [ "sh", "-c", "nvidia-smi -L 2>/dev/null | grep -q '^GPU ' && echo nvidia || { grep -q . /sys/class/drm/card*/device/gpu_busy_percent 2>/dev/null && echo generic || echo none; }" ]
+
+    command: ["sh", "-c", "nvidia-smi -L 2>/dev/null | grep -q '^GPU ' && echo nvidia || { grep -q . /sys/class/drm/card*/device/gpu_busy_percent 2>/dev/null && echo generic || echo none; }"]
     stdout: StdioCollector {
       onStreamFinished: root.gpuType = text.trim()
     }
@@ -69,23 +69,21 @@ Singleton {
   Process {
     id: gpu
 
-    command: root.gpuType === "generic" ? [ "sh", "-c", "cat /sys/class/drm/card*/device/gpu_busy_percent" ]
-              : root.gpuType === "nvidia" ? [ "nvidia-smi", "--query-gpu=utilization.gpu", "--format=csv,noheader,nounits" ]
-              : [ "echo" ]
+    command: root.gpuType === "generic" ? ["sh", "-c", "cat /sys/class/drm/card*/device/gpu_busy_percent"] : root.gpuType === "nvidia" ? ["nvidia-smi", "--query-gpu=utilization.gpu", "--format=csv,noheader,nounits"] : ["echo"]
     stdout: StdioCollector {
       onStreamFinished: {
         if (root.gpuType == "generic") {
-          const percentages = text.trim().split("\n")
-          const sum = percentages.reduce((accumulator, number) => accumulator + parseInt(number))
+          const percentages = text.trim().split("\n");
+          const sum = percentages.reduce((accumulator, number) => accumulator + parseInt(number));
 
           // If there is only one gpu, it's the integrated one, otherwise subtract one for the integreted graphics card
-          let gpuCount = percentages.length == 1 ? 1 : percentages.length-1
+          let gpuCount = percentages.length == 1 ? 1 : percentages.length - 1;
 
-          root.gpuPercentage = sum / gpuCount / 100
+          root.gpuPercentage = sum / gpuCount / 100;
         } else if (root.gpuType = "nvidia") {
-          root.gpuPercentage = parseInt(text.trim())
+          root.gpuPercentage = parseInt(text.trim());
         } else {
-          root.gpuPercentage = 0
+          root.gpuPercentage = 0;
         }
       }
     }
@@ -96,10 +94,10 @@ Singleton {
 
     path: "/proc/meminfo"
     onLoaded: {
-      const text = memory.text()
+      const text = memory.text();
 
-      root.memoryTotal = parseInt(text.match(/MemTotal:\s*(\d+)/)[1]) || 1
-      root.memoryUsed = (memoryTotal - parseInt(text.match(/MemAvailable:\s*(\d+)/)[1])) || 1
+      root.memoryTotal = parseInt(text.match(/MemTotal:\s*(\d+)/)[1]) || 1;
+      root.memoryUsed = (memoryTotal - parseInt(text.match(/MemAvailable:\s*(\d+)/)[1])) || 1;
     }
   }
 
@@ -107,17 +105,17 @@ Singleton {
     id: storage
 
     // Run "df" with "/", as to not target other devices. Doesn't work with other partitions mounted on other paths
-    command: [ "sh", "-c", "df / | grep '^/dev/' | awk '{print $3, $4}'" ]
+    command: ["sh", "-c", "df / | grep '^/dev/' | awk '{print $3, $4}'"]
     stdout: StdioCollector {
       onStreamFinished: {
-        const parts = text.trim().split(/\s+/)
+        const parts = text.trim().split(/\s+/);
 
         if (parts.length >= 2) {
-          const storageUsed = parseInt(parts[0]) || 0
-          const storageAvailable = parseInt(parts[1]) || 0
+          const storageUsed = parseInt(parts[0]) || 0;
+          const storageAvailable = parseInt(parts[1]) || 0;
 
-          root.storageUsed = storageUsed
-          root.storageTotal = storageUsed + storageAvailable
+          root.storageUsed = storageUsed;
+          root.storageTotal = storageUsed + storageAvailable;
         }
       }
     }

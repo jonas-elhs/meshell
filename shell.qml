@@ -6,7 +6,7 @@ import qs.modules.background
 import qs.modules.notifications
 import Quickshell
 
-ShellRoot { 
+ShellRoot {
   Variants {
     model: Quickshell.screens
 

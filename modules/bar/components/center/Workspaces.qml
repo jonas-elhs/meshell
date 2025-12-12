@@ -14,10 +14,9 @@ BarModule {
 
   onWheel: (direction, event) => {
     if (direction == "up") {
-      Hyprland.dispatch(`workspace e-1`)
-    }
-    else if (direction == "down") {
-      Hyprland.dispatch(`workspace e+1`)
+      Hyprland.dispatch(`workspace e-1`);
+    } else if (direction == "down") {
+      Hyprland.dispatch(`workspace e+1`);
     }
   }
 

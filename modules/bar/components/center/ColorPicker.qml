@@ -12,7 +12,7 @@ BarModule {
   property string color: ColorPicker.color
 
   acceptedButtons: Qt.LeftButton | Qt.RightButton
-  onLeftClicked: Quickshell.execDetached([ "wl-copy", root.color ])
+  onLeftClicked: Quickshell.execDetached(["wl-copy", root.color])
   onClicked: root.settings.barCenterWidget = ""
 
   BarGroup {

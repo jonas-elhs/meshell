@@ -10,6 +10,6 @@ BarModule {
 
     acceptedButtons: Qt.LeftButton | Qt.RightButton
     onLeftClicked: settings.toggleBarCenterWidget("powerMenu")
-    onRightClicked: Quickshell.execDetached([ "systemctl", "poweroff" ])
+    onRightClicked: Quickshell.execDetached(["systemctl", "poweroff"])
   }
 }

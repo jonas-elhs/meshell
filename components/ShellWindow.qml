@@ -42,11 +42,11 @@ CustomWindow {
   // Keyboard Focus
   WlrLayershell.keyboardFocus: root.settings.barCenterWidget == "" ? WlrKeyboardFocus.None : WlrKeyboardFocus.OnDemand
   HyprlandFocusGrab {
-    active: root.settings.barCenterWidget == "powerMenu"
     id: grab
-    windows: [ root ]
+    active: root.settings.barCenterWidget == "powerMenu"
+    windows: [root]
     onCleared: {
-      root.settings.barCenterWidget = ""
+      root.settings.barCenterWidget = "";
     }
   }
 }

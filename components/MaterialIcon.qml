@@ -14,9 +14,9 @@ Text {
   font.pointSize: root.size
   font.weight: root.weight
   font.variableAxes: ({
-    FILL: root.fill.toFixed(1),
-    GRAD: root.grade,
-    wght: fontInfo.weight,
-    opsz: fontInfo.pixelSize,
-  })
+      FILL: root.fill.toFixed(1),
+      GRAD: root.grade,
+      wght: fontInfo.weight,
+      opsz: fontInfo.pixelSize
+    })
 }

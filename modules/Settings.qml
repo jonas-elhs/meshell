@@ -12,14 +12,14 @@ PersistentProperties {
 
   function toggleBarCenterWidget(widget: string) {
     if (root.barCenterWidget == widget) {
-      root.barCenterWidget = ""
+      root.barCenterWidget = "";
     } else {
-      root.barCenterWidget = widget
+      root.barCenterWidget = widget;
     }
   }
 
   onShowBarChanged: {
-    root.barCenterWidget = ""
+    root.barCenterWidget = "";
   }
 
   Component.onCompleted: SettingsStorage.save(screen, this)

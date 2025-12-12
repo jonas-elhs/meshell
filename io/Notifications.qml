@@ -21,9 +21,9 @@ Singleton {
     bodyImagesSupported: false
     actionsSupported: false
 
-    onNotification: (notification) => {
-      notification.tracked = true
-      root.list.push(notification)
+    onNotification: notification => {
+      notification.tracked = true;
+      root.list.push(notification);
     }
   }
 }

@@ -54,16 +54,16 @@ BarModule {
     KeyNavigation.down: suspend
   }
 
-  component PowerButton : Rectangle {
+  component PowerButton: Rectangle {
     id: button
 
     property string icon
     property string command
 
     function execute() {
-      Quickshell.execDetached([ "sh", "-c", command ])
+      Quickshell.execDetached(["sh", "-c", command]);
 
-      root.settings.barCenterWidget = ""
+      root.settings.barCenterWidget = "";
     }
 
     width: 100
@@ -78,11 +78,11 @@ BarModule {
     Keys.onEscapePressed: root.settings.barCenterWidget = ""
     Keys.onPressed: event => {
       if (event.key === Qt.Key_J && KeyNavigation.down) {
-        KeyNavigation.down.focus = true
-        event.accepted = true
+        KeyNavigation.down.focus = true;
+        event.accepted = true;
       } else if (event.key === Qt.Key_K && KeyNavigation.up) {
-        KeyNavigation.up.focus = true
-        event.accepted = true
+        KeyNavigation.up.focus = true;
+        event.accepted = true;
       }
     }
 

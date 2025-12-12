@@ -10,7 +10,7 @@ Singleton {
   readonly property int seconds: clock.seconds
 
   function format(fmt: string): string {
-    return Qt.formatDateTime(date, fmt)
+    return Qt.formatDateTime(date, fmt);
   }
 
   SystemClock {

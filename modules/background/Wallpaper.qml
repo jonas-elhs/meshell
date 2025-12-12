@@ -23,7 +23,7 @@ Item {
     target: Wallpapers
 
     function onCurrentChanged() {
-      spawnWallpaper()
+      spawnWallpaper();
     }
   }
 
@@ -31,9 +31,9 @@ Item {
     const wallpaper = wallpaperImage.createObject(root, {
       wallpaperPath: Wallpapers.current,
       immediate: immediate ?? false
-    })
+    });
 
-    root.wallpapers.push(wallpaper)
+    root.wallpapers.push(wallpaper);
   }
 
   Component {
@@ -47,9 +47,9 @@ Item {
 
       Component.onCompleted: {
         if (root.morph) {
-          image.opacity = 1
+          image.opacity = 1;
         } else {
-          width = 3 * image.width
+          width = 3 * image.width;
         }
       }
 
@@ -90,10 +90,10 @@ Item {
             ScriptAction {
               script: {
                 if (root.wallpapers.length > 1) {
-                  const first = root.wallpapers[0]
+                  const first = root.wallpapers[0];
 
-                  first.destroy()
-                  root.wallpapers.shift()
+                  first.destroy();
+                  root.wallpapers.shift();
                 }
               }
             }
@@ -111,10 +111,10 @@ Item {
           ScriptAction {
             script: {
               if (root.wallpapers.length > 1) {
-                const first = root.wallpapers[0]
+                const first = root.wallpapers[0];
 
-                first.destroy()
-                root.wallpapers.shift()
+                first.destroy();
+                root.wallpapers.shift();
               }
             }
           }

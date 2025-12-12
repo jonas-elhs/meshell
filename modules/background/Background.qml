@@ -20,5 +20,5 @@ CustomWindow {
 
   mask: Region {}
 
-  Wallpaper { }
+  Wallpaper {}
 }

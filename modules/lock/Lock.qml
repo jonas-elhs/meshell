@@ -15,10 +15,9 @@ Scope {
 
     function onLockedChanged() {
       if (GlobalSettings.locked == true) {
-        lock.locked = true
-      }
-      else {
-        lock.unlock()
+        lock.locked = true;
+      } else {
+        lock.unlock();
       }
     }
   }

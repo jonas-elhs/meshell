@@ -7,8 +7,8 @@ BarModule {
   id: root
 
   default property list<WidgetComponent> components: []
-  readonly property Component conditionalComponent: components.find((component) => component.condition)?.component ?? null
-  readonly property Component defaultComponent: components.find((component) => component.isDefault)?.component ?? null
+  readonly property Component conditionalComponent: components.find(component => component.condition)?.component ?? null
+  readonly property Component defaultComponent: components.find(component => component.isDefault)?.component ?? null
   readonly property Component activeComponent: conditionalComponent ?? defaultComponent ?? null
 
   padding: loader.item.padding
