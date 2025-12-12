@@ -1,5 +1,6 @@
 import qs.config
 import qs.io
+import qs.modules
 import Quickshell
 import Quickshell.Wayland
 import Quickshell.Hyprland
@@ -11,6 +12,7 @@ CustomWindow {
   required property var settings
 
   WlrLayershell.namespace: "meshell-shell"
+  WlrLayershell.layer: GlobalSettings.locked ? WlrLayer.Overlay : WlrLayer.Top
 
   // Span Whole Screen
   anchors.top: true
