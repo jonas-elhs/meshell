@@ -18,7 +18,7 @@ python3.pkgs.buildPythonApplication {
   meta = {
     description = "The control program for meshell";
     homepage = "https://github.com/jonas-elhs/meshell";
-    license = lib.licenses.gpl3Only;
+    license = lib.licenses.mit;
     mainProgram = "meshell";
     platforms = lib.platforms.linux;
   };
