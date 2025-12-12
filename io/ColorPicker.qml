@@ -47,8 +47,6 @@ Singleton {
     }
   }
   property list<string> formattedColor: {
-    const split = root.color.split(" ");
-
     switch (settings?.colorPickerColorType ?? "") {
     case "hex":
       {
@@ -60,11 +58,11 @@ Singleton {
     case "hsl":
     case "hsv":
       {
-        return split;
+        return root.color.split(" ");
       }
     default:
       {
-        return color;
+        return [color];
       }
     }
   }
