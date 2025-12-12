@@ -1,6 +1,6 @@
 {
   lib,
-  python3
+  python3,
 }:
 python3.pkgs.buildPythonApplication {
   pname = "meshell-cli";
@@ -13,7 +13,7 @@ python3.pkgs.buildPythonApplication {
     hatch-vcs
   ];
 
-  pythonImportsCheck = [ "meshell" ];
+  pythonImportsCheck = ["meshell"];
 
   meta = {
     description = "The control program for meshell";

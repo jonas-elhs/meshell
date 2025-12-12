@@ -1,32 +1,49 @@
 import argparse
 
-from meshell.subcommands import bar, powermenu, colorpicker, wallpaper, lockscreen
 from meshell import shell
+from meshell.subcommands import bar, colorpicker, lockscreen, powermenu, wallpaper
+
 
 def parse_args() -> (argparse.ArgumentParser, argparse.Namespace):
   parser = argparse.ArgumentParser(prog="meshell", description="Meshell control script")
-  parser.add_argument("-v", "--version", action="store_true", help="print the current version")
+  parser.add_argument(
+    "-v", "--version", action="store_true", help="print the current version"
+  )
 
   subcommands = parser.add_subparsers(title="commands", metavar="COMMAND")
 
   # Shell
   start_parser = subcommands.add_parser("start", help="start the shell")
   start_parser.set_defaults(execute=shell.start)
-  start_parser.add_argument("-s", "--sub-process", action="store_true", help="start as a sub process")
+  start_parser.add_argument(
+    "-s", "--sub-process", action="store_true", help="start as a sub process"
+  )
   stop_parser = subcommands.add_parser("stop", help="stop the shell")
   stop_parser.set_defaults(execute=shell.stop)
-  stop_parser.add_argument("-a", "--all", action="store_true", help="stop all running instances")
+  stop_parser.add_argument(
+    "-a", "--all", action="store_true", help="stop all running instances"
+  )
   restart_parser = subcommands.add_parser("restart", help="restart the shell")
   restart_parser.set_defaults(execute=shell.restart)
-  restart_parser.add_argument("-s", "--sub-process", action="store_true", help="start as a sub process")
-  restart_parser.add_argument("-a", "--all", action="store_true", help="stop all running instances")
-  subcommands.add_parser("running", help="check if the shell is currently running").set_defaults(execute=shell.running)
+  restart_parser.add_argument(
+    "-s", "--sub-process", action="store_true", help="start as a sub process"
+  )
+  restart_parser.add_argument(
+    "-a", "--all", action="store_true", help="stop all running instances"
+  )
+  subcommands.add_parser(
+    "running", help="check if the shell is currently running"
+  ).set_defaults(execute=shell.running)
 
   # Bar
   bar_parser = subcommands.add_parser("bar", help="control the bar")
-  bar_subparsers = bar_parser.add_subparsers(title="actions", metavar="ACTION", required=True)
+  bar_subparsers = bar_parser.add_subparsers(
+    title="actions", metavar="ACTION", required=True
+  )
 
-  bar_subparsers.add_parser("toggle", help="toggle the bar").set_defaults(execute=bar.toggle)
+  bar_subparsers.add_parser("toggle", help="toggle the bar").set_defaults(
+    execute=bar.toggle
+  )
   bar_subparsers.add_parser("show", help="show the bar").set_defaults(execute=bar.show)
   bar_subparsers.add_parser("hide", help="hide the bar").set_defaults(execute=bar.hide)
 
@@ -34,27 +51,51 @@ def parse_args() -> (argparse.ArgumentParser, argparse.Namespace):
   power_parser = subcommands.add_parser("power", help="control the power menu")
   power_subparsers = power_parser.add_subparsers(title="actions", metavar="ACTION")
 
-  power_subparsers.add_parser("toggle", help="toggle the power menu").set_defaults(execute=powermenu.toggle)
-  power_subparsers.add_parser("show", help="show the power menu").set_defaults(execute=powermenu.show)
-  power_subparsers.add_parser("hide", help="hide the power menu").set_defaults(execute=powermenu.hide)
+  power_subparsers.add_parser("toggle", help="toggle the power menu").set_defaults(
+    execute=powermenu.toggle
+  )
+  power_subparsers.add_parser("show", help="show the power menu").set_defaults(
+    execute=powermenu.show
+  )
+  power_subparsers.add_parser("hide", help="hide the power menu").set_defaults(
+    execute=powermenu.hide
+  )
 
   # Color Picker
   picker_parser = subcommands.add_parser("pick", help="pick a color")
   picker_parser.set_defaults(execute=colorpicker.pick)
-  picker_parser.add_argument("format", choices=["hex", "rgb", "hsl", "hsv"], help="format of picked color (hex, rgb, hsl, hsv)")
-  picker_parser.add_argument("-c", "--copy", action="store_true", help="copy the color to clipboard")
+  picker_parser.add_argument(
+    "format",
+    choices=["hex", "rgb", "hsl", "hsv"],
+    help="format of picked color (hex, rgb, hsl, hsv)",
+  )
+  picker_parser.add_argument(
+    "-c", "--copy", action="store_true", help="copy the color to clipboard"
+  )
 
   # Wallpaper
   wallpaper_parser = subcommands.add_parser("wallpaper", help="control the wallpaper")
-  wallpaper_subparsers = wallpaper_parser.add_subparsers(title="actions", metavar="ACTION", required=True)
+  wallpaper_subparsers = wallpaper_parser.add_subparsers(
+    title="actions", metavar="ACTION", required=True
+  )
 
-  wallpaper_subparsers.add_parser("get", help="get current wallpaper").set_defaults(execute=wallpaper.get)
-  wallpaper_set_parser = wallpaper_subparsers.add_parser("set", help="set new wallpaper")
+  wallpaper_subparsers.add_parser("get", help="get current wallpaper").set_defaults(
+    execute=wallpaper.get
+  )
+  wallpaper_set_parser = wallpaper_subparsers.add_parser(
+    "set", help="set new wallpaper"
+  )
   wallpaper_set_parser.set_defaults(execute=wallpaper.set)
-  wallpaper_set_parser.add_argument("path", action="store", help="path to the new wallpaper")
+  wallpaper_set_parser.add_argument(
+    "path", action="store", help="path to the new wallpaper"
+  )
 
   # Lockscreen
-  subcommands.add_parser("lock", help="lock the screen").set_defaults(execute=lockscreen.lock)
-  subcommands.add_parser("unlock", help="unlock the screen").set_defaults(execute=lockscreen.unlock)
-  
+  subcommands.add_parser("lock", help="lock the screen").set_defaults(
+    execute=lockscreen.lock
+  )
+  subcommands.add_parser("unlock", help="unlock the screen").set_defaults(
+    execute=lockscreen.unlock
+  )
+
   return parser, parser.parse_args()

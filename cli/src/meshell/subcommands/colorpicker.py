@@ -1,6 +1,19 @@
-from argparse import Namespace
 import subprocess
+from argparse import Namespace
+
 
 def pick(args: Namespace) -> None:
   copy_string = "true" if args.copy else "false"
-  subprocess.run([ "qs", "ipc", "-c", "meshell", "call", "colorpicker", "pick", args.format, copy_string ])
+  subprocess.run(
+    [
+      "qs",
+      "ipc",
+      "-c",
+      "meshell",
+      "call",
+      "colorpicker",
+      "pick",
+      args.format,
+      copy_string,
+    ]
+  )

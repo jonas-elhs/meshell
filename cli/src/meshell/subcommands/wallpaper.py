@@ -1,8 +1,10 @@
-from argparse import Namespace
 import subprocess
+from argparse import Namespace
+
 
 def get(args: Namespace) -> None:
-  subprocess.run([ "qs", "ipc", "-c", "meshell", "call", "wallpaper", "get" ])
+  subprocess.run(["qs", "ipc", "-c", "meshell", "call", "wallpaper", "get"])
+
 
 def set(args: Namespace) -> None:
-  subprocess.run([ "qs", "ipc", "-c", "meshell", "call", "wallpaper", "set", args.path ])
+  subprocess.run(["qs", "ipc", "-c", "meshell", "call", "wallpaper", "set", args.path])

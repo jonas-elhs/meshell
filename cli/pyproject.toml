@@ -17,3 +17,6 @@ source = "vcs"
 only-include = [
   "src",
 ]
+
+[tool.ruff]
+indent-width = 2

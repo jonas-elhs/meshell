@@ -1,5 +1,6 @@
 from meshell.parser import parse_args
 
+
 def main() -> None:
   parser, args = parse_args()
 

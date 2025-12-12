@@ -1,11 +1,14 @@
-from argparse import Namespace
 import subprocess
+from argparse import Namespace
+
 
 def toggle(args: Namespace) -> None:
-  subprocess.run([ "qs", "ipc", "-c", "meshell", "call", "bar", "toggle" ])
+  subprocess.run(["qs", "ipc", "-c", "meshell", "call", "bar", "toggle"])
+
 
 def show(args: Namespace) -> None:
-  subprocess.run([ "qs", "ipc", "-c", "meshell", "call", "bar", "display", "true" ])
+  subprocess.run(["qs", "ipc", "-c", "meshell", "call", "bar", "display", "true"])
+
 
 def hide(args: Namespace) -> None:
-  subprocess.run([ "qs", "ipc", "-c", "meshell", "call", "bar", "display", "false" ])
+  subprocess.run(["qs", "ipc", "-c", "meshell", "call", "bar", "display", "false"])
