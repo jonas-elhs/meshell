@@ -25,34 +25,28 @@ CustomWindow {
 
   name: "lock-background"
 
-  Item {
-    anchors.fill: parent
-    anchors.leftMargin: Config.layout.gap.size
+  ClippingRectangle {
+    id: clip
 
+    anchors.verticalCenter: parent.verticalCenter
+    color: "transparent"
     opacity: GlobalSettings.locked ? 1 : 0
 
-    ClippingRectangle {
-      id: clip
+    radius: root.barCenter.radius
+    width: root.barCenter.width
+    height: root.barCenter.height
+    x: root.barCenter.x
 
-      anchors.verticalCenter: parent.verticalCenter
-      color: "transparent"
+    Image {
+      id: image
 
-      radius: root.barCenter.radius
-      width: root.barCenter.width
-      height: root.barCenter.height
-      x: root.barCenter.x
+      x: 0 - clip.x
+      y: 0 - clip.y
+      width: root.width
+      height: root.height
 
-      Image {
-        id: image
-
-        x: 0 - clip.x
-        y: 0 - clip.y
-        width: root.width
-        height: root.height
-
-        source: Wallpapers.current
-        fillMode: Image.PreserveAspectCrop
-      }
+      source: Wallpapers.current
+      fillMode: Image.PreserveAspectCrop
     }
   }
 }
