@@ -1,4 +1,3 @@
-import qs.modules
 import qs.components
 import Quickshell
 import Quickshell.Wayland
@@ -10,7 +9,7 @@ CustomWindow {
 
   name: "background"
   screen: root.screen
-  WlrLayershell.layer: GlobalSettings.locked ? WlrLayer.Overlay : WlrLayer.Background
+  WlrLayershell.layer: WlrLayer.Background
   exclusionMode: ExclusionMode.Ignore
   color: "black"
 

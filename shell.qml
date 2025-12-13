@@ -14,6 +14,11 @@ ShellRoot {
       id: scope
       property ShellScreen modelData
 
+      LockBackground {
+        barCenter: bar.center
+        settings: settings
+      }
+
       ShellWindow {
         id: shell
         settings: settings
