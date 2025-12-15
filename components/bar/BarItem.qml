@@ -24,6 +24,8 @@ Item {
 
   BarGroup {
     id: content
+    // TODO: figure out right spacing
+    spacing: root.verticalText ? 5 : this.spacing
 
     MaterialIcon {
       id: icon
@@ -35,16 +37,19 @@ Item {
 
       anchors.horizontalCenter: parent.horizontalCenter
     }
-    CustomText {
-      id: text
+    Item {
+      implicitWidth: root.verticalText ? text.implicitHeight : text.implicitWidth
+      implicitHeight: root.verticalText ? text.implicitWidth : text.implicitHeight
 
-      text: root.text
-      size: root.textSize
-      rotation: root.verticalText ? 270 : 0
-      width: root.verticalText ? implicitHeight : implicitWidth
-      height: root.verticalText ? implicitWidth : implicitHeight
+      CustomText {
+        id: text
 
-      anchors.horizontalCenter: parent.horizontalCenter
+        text: root.text
+        size: root.textSize
+        rotation: root.verticalText ? 270 : 0
+
+        anchors.centerIn: parent
+      }
     }
   }
 
