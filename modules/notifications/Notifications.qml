@@ -18,7 +18,7 @@ Item {
     id: list
 
     model: ScriptModel {
-      values: [...Notifications.list]
+      values: [...Notifications.popups]
     }
     anchors.fill: parent
     orientation: ListView.Vertical
