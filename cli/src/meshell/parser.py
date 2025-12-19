@@ -1,7 +1,6 @@
 import argparse
 
-from meshell import shell
-from meshell.commands import bar, colorpicker, lockscreen, powermenu, wallpaper
+from meshell.commands import bar, colorpicker, lockscreen, powermenu, shell, wallpaper
 
 
 def parse_args() -> (argparse.ArgumentParser, argparse.Namespace):
