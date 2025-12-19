@@ -22,6 +22,7 @@ ShellRoot {
       ShellWindow {
         id: shell
         settings: settings
+        bar: bar
 
         Bar {
           id: bar
