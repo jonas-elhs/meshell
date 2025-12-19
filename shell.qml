@@ -23,6 +23,7 @@ ShellRoot {
         id: shell
         settings: settings
         bar: bar
+        notifications: notifications
 
         Bar {
           id: bar

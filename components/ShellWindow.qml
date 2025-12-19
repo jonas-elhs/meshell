@@ -11,6 +11,7 @@ CustomWindow {
 
   required property var settings
   required property var bar
+  required property var notifications
 
   WlrLayershell.namespace: "meshell-shell"
   WlrLayershell.layer: GlobalSettings.locked ? WlrLayer.Overlay : WlrLayer.Top
@@ -24,17 +25,26 @@ CustomWindow {
 
   // Only Click On Children
   mask: Region {
-    regions: regions.instances
+    regions: [...barRegions.instances, ...notificationRegions.instances]
   }
   Variants {
-    id: regions
-    // FIX: target all children
-    model: bar.children
+    id: barRegions
+    model: root.bar.children
 
     Region {
       required property Item modelData
 
       item: modelData
+    }
+  }
+  Variants {
+    id: notificationRegions
+    model: [...Array(notifications.list.count).keys()]
+
+    Region {
+      required property int modelData
+
+      item: notifications.list.itemAtIndex(modelData)
     }
   }
   color: "transparent"

@@ -1,21 +1,28 @@
 import qs.io
+import qs.config
 import Quickshell
 import Quickshell.Services.Notifications
 import QtQuick
 
 Item {
+  id: root
+
+  property var list: list
+
   anchors.top: parent.top
   anchors.right: parent.right
   anchors.bottom: parent.bottom
   width: 200
 
   ListView {
+    id: list
+
     model: ScriptModel {
       values: [...Notifications.list]
     }
     anchors.fill: parent
     orientation: ListView.Vertical
-    spacing: 10
+    spacing: Config.layout.gap.size
 
     delegate: NotificationWrapper {}
   }
