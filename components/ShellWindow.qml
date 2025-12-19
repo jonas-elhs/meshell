@@ -1,5 +1,5 @@
-import qs.config
 import qs.io
+import qs.config
 import qs.modules
 import Quickshell
 import Quickshell.Wayland
@@ -10,6 +10,7 @@ CustomWindow {
   id: root
 
   required property var settings
+  required property var bar
 
   WlrLayershell.namespace: "meshell-shell"
   WlrLayershell.layer: GlobalSettings.locked ? WlrLayer.Overlay : WlrLayer.Top
@@ -33,10 +34,7 @@ CustomWindow {
     Region {
       required property Item modelData
 
-      x: modelData.x + Config.layout.gap.size
-      y: modelData.y + 20
-      width: modelData.width
-      height: modelData.height
+      item: modelData
     }
   }
   color: "transparent"
