@@ -14,14 +14,14 @@ Singleton {
     id: server
 
     keepOnReload: false
-    actionIconsSupported: false
+    actionIconsSupported: false // TODO
     bodySupported: true
-    imageSupported: false
-    persistenceSupported: false
-    bodyHyperlinksSupported: false
-    bodyMarkupSupported: false
-    bodyImagesSupported: false
-    actionsSupported: false
+    imageSupported: false // TODO
+    persistenceSupported: false // TODO
+    bodyHyperlinksSupported: false // TODO
+    bodyMarkupSupported: true
+    bodyImagesSupported: true
+    actionsSupported: false // TODO
 
     onNotification: notification => {
       notification.tracked = true;
