@@ -1,12 +1,11 @@
 import QtQuick
 
-Text {
+CustomText {
   id: root
 
   property string icon
   property real fill: 0
   property int grade: 0
-  property int size: 10
   property int weight: 10
 
   text: root.icon
