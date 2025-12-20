@@ -12,7 +12,9 @@ Item {
   anchors.top: parent.top
   anchors.right: parent.right
   anchors.bottom: parent.bottom
-  width: 200
+  anchors.topMargin: Config.layout.gap.inner
+  anchors.rightMargin: Config.layout.gap.inner
+  width: 300
 
   ListView {
     id: list
