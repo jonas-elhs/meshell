@@ -78,6 +78,12 @@ Singleton {
         notif.popup = false;
       }
     }
+
+    function close() {
+      root.list = root.list.filter(notif => notif !== this);
+      notification.dismiss();
+      destroy();
+    }
   }
   Component {
     id: notifComponent
