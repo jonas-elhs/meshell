@@ -15,6 +15,9 @@ Scope {
   function handleKey(event): void {
     const key = event.key;
 
+    if (root.authenticating)
+      return;
+
     state = "";
 
     if (key == Qt.Key_Enter || key == Qt.Key_Return) {
