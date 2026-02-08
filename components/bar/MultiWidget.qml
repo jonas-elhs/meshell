@@ -6,6 +6,8 @@ import QtQuick
 BarModule {
   id: root
 
+  property bool animate: false
+
   default property list<WidgetComponent> components: []
   readonly property Component conditionalComponent: components.find(component => component.condition)?.component ?? null
   readonly property Component defaultComponent: components.find(component => component.isDefault)?.component ?? null
@@ -30,7 +32,7 @@ BarModule {
     id: loader
 
     sourceComponent: activeComponent
-    onSourceComponentChanged: animation.running = true
+    onSourceComponentChanged: animation.running = root.animate
 
     ParallelAnimation {
       id: animation
@@ -51,10 +53,18 @@ BarModule {
     }
   }
 
+  Timer {
+    interval: 1
+    running: activeComponent != null && !root.animate
+    onTriggered: root.animate = true
+  }
+
   Behavior on implicitWidth {
+    enabled: root.animate
     CustomNumberAnimation {}
   }
   Behavior on implicitHeight {
+    enabled: root.animate
     CustomNumberAnimation {}
   }
 }
