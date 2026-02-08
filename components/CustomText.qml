@@ -6,7 +6,7 @@ Text {
   property bool inverse: false
   property int size
 
-  color: inverse ? Config.colors.background.base : Config.colors.foreground.base
+  color: inverse ? Config.colors.background : Config.colors.foreground
   font.family: Config.layout.font.name
   font.pointSize: size
 }

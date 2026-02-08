@@ -68,7 +68,7 @@ WlSessionLockSurface {
       radius: width / 2
       border.width: Config.layout.border.width * 1.5
       border.color: Config.colors.accent
-      color: Config.colors.foreground.base
+      color: Config.colors.foreground
 
       CustomText {
         id: user
@@ -150,7 +150,7 @@ WlSessionLockSurface {
             width: 10
             height: width
             radius: width / 2
-            color: Config.colors.background.base
+            color: Config.colors.background
 
             Component.onCompleted: opacity = 1
             Behavior on opacity {

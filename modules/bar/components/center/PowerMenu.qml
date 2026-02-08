@@ -88,8 +88,8 @@ BarModule {
 
     MaterialIcon {
       icon: button.icon
-      color: Config.colors.foreground.base
-      // color: button.focus ? Config.colors.accent : Config.colors.foreground.base
+      color: Config.colors.foreground
+      // color: button.focus ? Config.colors.accent : Config.colors.foreground
       size: 50
       weight: 700
       anchors.centerIn: parent

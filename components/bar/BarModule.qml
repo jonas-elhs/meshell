@@ -28,7 +28,7 @@ Rectangle {
   readonly property int actualVerticalPadding: styled ? verticalPadding : 0
 
   radius: styled ? Config.layout.border.radius.size : 0
-  color: styled ? transparent ? "#01000000" : `#${Config.layout.background.opacity_hex}${Config.colors.background.base.substring(1)}` : "transparent"
+  color: styled ? transparent ? "#01000000" : `#${Config.layout.background.opacity_hex}${Config.colors.background.substring(1)}` : "transparent"
   border.width: styled ? Config.layout.border.width : 0
   border.color: hoverState.hovered || alwaysBorder ? Config.colors.accent : Config.colors.inactive
   x: leftMargin

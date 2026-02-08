@@ -34,7 +34,7 @@ BarModule {
       implicitWidth: diameter
       implicitHeight: focused ? 100 : diameter
       radius: width / 2
-      color: focused ? Config.colors.accent : Config.colors.foreground.base
+      color: focused ? Config.colors.accent : Config.colors.foreground
 
       // Switch To Workspace On Click
       MouseArea {

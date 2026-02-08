@@ -17,7 +17,7 @@ Rectangle {
   implicitHeight: content.implicitHeight
 
   radius: Config.layout.border.radius.size
-  color: `#${Config.layout.background.opacity_hex}${Config.colors.background.base.substring(1)}`
+  color: `#${Config.layout.background.opacity_hex}${Config.colors.background.substring(1)}`
   border.width: Config.layout.border.width
   border.color: hoverState.hovered ? Config.colors.accent : Config.colors.inactive
   opacity: GlobalSettings.locked ? 0 : 1
