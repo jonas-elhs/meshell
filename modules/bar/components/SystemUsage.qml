@@ -10,7 +10,7 @@ BarModule {
   }
 
   BarItem {
-    visible: SystemUsage.gpuType != "NONE"
+    visible: SystemUsage.gpuType != "none"
 
     icon: "󰢮"
     text: SystemUsage.gpuPercentageDisplay + "%"

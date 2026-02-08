@@ -12,7 +12,7 @@ Singleton {
   property real cpuPercentage: cpuTotal > 0 ? cpuUsed / cpuTotal : 0
   property int cpuPercentageDisplay: cpuPercentage * 100
 
-  property string gpuType: "NONE"
+  property string gpuType
   property real gpuPercentage: 0
   property int gpuPercentageDisplay: gpuPercentage * 100
 
