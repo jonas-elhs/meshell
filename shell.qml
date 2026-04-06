@@ -7,12 +7,22 @@ import qs.modules.notifications
 import Quickshell
 
 ShellRoot {
+  Lock {}
+
+  Ipc {}
+  HyprlandShortcuts {}
+
   Variants {
     model: Quickshell.screens
 
     Scope {
       id: scope
       property ShellScreen modelData
+
+      Background {
+        id: background
+        screen: scope.modelData
+      }
 
       LockBackground {
         barCenter: bar.center
@@ -36,26 +46,15 @@ ShellRoot {
         }
       }
 
-      Background {
-        id: background
-        screen: scope.modelData
+      Exclusions {
+        settings: settings
+        bar: bar
       }
 
       Settings {
         id: settings
         screen: scope.modelData
       }
-
-      Exclusions {
-        settings: settings
-        bar: bar
-      }
     }
   }
-
-  Lock {}
-
-  HyprlandShortcuts {}
-
-  Ipc {}
 }

@@ -7,20 +7,24 @@ import QtQuick
 Singleton {
   id: root
 
+  // CPU
   property real cpuUsed: 0
   property real cpuTotal: 0
   property real cpuPercentage: cpuTotal > 0 ? cpuUsed / cpuTotal : 0
   property int cpuPercentageDisplay: cpuPercentage * 100
 
+  // GPU
   property string gpuType
   property real gpuPercentage: 0
   property int gpuPercentageDisplay: gpuPercentage * 100
 
-  property real memoryUsed: 0
-  property real memoryTotal: 0
-  property real memoryPercentage: memoryTotal > 0 ? memoryUsed / memoryTotal : 0
-  property int memoryPercentageDisplay: memoryPercentage * 100
+  // RAM
+  property real ramUsed: 0
+  property real ramTotal: 0
+  property real ramPercentage: ramTotal > 0 ? ramUsed / ramTotal : 0
+  property int ramPercentageDisplay: ramPercentage * 100
 
+  // STORAGE
   property real storageUsed: 0
   property real storageTotal: 0
   property real storagePercentage: storageTotal > 0 ? storageUsed / storageTotal : 0
@@ -36,7 +40,7 @@ Singleton {
       cpu.reload();
       gpuType.running = true;
       gpu.running = true;
-      memory.reload();
+      ram.reload();
       storage.running = true;
     }
   }
@@ -89,14 +93,14 @@ Singleton {
   }
 
   FileView {
-    id: memory
+    id: ram
 
     path: "/proc/meminfo"
     onLoaded: {
-      const text = memory.text();
+      const text = ram.text();
 
-      root.memoryTotal = parseInt(text.match(/MemTotal:\s*(\d+)/)[1]) || 1;
-      root.memoryUsed = (root.memoryTotal - parseInt(text.match(/MemAvailable:\s*(\d+)/)[1])) || 1;
+      ramTotal = parseInt(text.match(/MemTotal:\s*(\d+)/)[1]) || 1;
+      ramUsed = (ram.memoryTotal - parseInt(text.match(/MemAvailable:\s*(\d+)/)[1])) || 1;
     }
   }
 

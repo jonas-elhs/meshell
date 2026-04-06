@@ -5,7 +5,7 @@ import qs.modules.bar.components.center
 MultiWidget {
   id: root
 
-  required property var bar
+  required property var barWidth
   required property var settings
   required property var screen
 
@@ -14,7 +14,7 @@ MultiWidget {
     isDefault: true
 
     Workspaces {
-      width: root.bar.barWidth
+      width: root.barWidth
       styled: false
     }
   }

@@ -9,11 +9,10 @@ import QtQuick
 CustomWindow {
   id: root
 
-  required property var settings
   required property var bar
+  required property var settings
   required property var notifications
 
-  WlrLayershell.namespace: "meshell-shell"
   WlrLayershell.layer: GlobalSettings.locked ? WlrLayer.Overlay : WlrLayer.Top
 
   // Span Whole Screen
@@ -33,21 +32,18 @@ CustomWindow {
 
     Region {
       required property Item modelData
-
       item: modelData
     }
   }
   Variants {
     id: notificationRegions
-    model: [...Array(notifications.list.count).keys()]
+    model: root.notifications.list.children
 
     Region {
-      required property int modelData
-
-      item: notifications.list.itemAtIndex(modelData)
+      required property var modelData
+      item: modelData
     }
   }
-  color: "transparent"
 
   // Keyboard Focus
   WlrLayershell.keyboardFocus: root.settings.barCenterWidget == "" ? WlrKeyboardFocus.None : WlrKeyboardFocus.OnDemand

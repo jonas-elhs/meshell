@@ -18,6 +18,4 @@ CustomWindow {
   implicitWidth: 1
   implicitHeight: 1
   mask: Region {}
-
-  color: "transparent"
 }

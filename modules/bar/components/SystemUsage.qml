@@ -18,7 +18,7 @@ BarModule {
 
   BarItem {
     icon: "memory_alt"
-    text: SystemUsage.memoryPercentageDisplay + "%"
+    text: SystemUsage.ramPercentageDisplay + "%"
   }
 
   BarItem {

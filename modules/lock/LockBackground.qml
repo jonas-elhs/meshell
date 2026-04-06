@@ -43,7 +43,7 @@ CustomWindow {
       x: 0 - clip.x
       y: 0 - clip.y
       width: root.width
-      height: root.height
+      height: root.height + 1
 
       source: Wallpapers.current
       fillMode: Image.PreserveAspectCrop
