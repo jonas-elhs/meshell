@@ -4,8 +4,7 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
     wrappers = {
-      url = "path:/home/jonas/dev/nix-wrapper-modules-quickshell";
-      # url = "github:BirdeeHub/nix-wrapper-modules";
+      url = "github:BirdeeHub/nix-wrapper-modules";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
